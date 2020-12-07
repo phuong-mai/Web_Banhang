@@ -12,30 +12,19 @@ namespace Web_BanHang.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Employee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
-        {
-            this.Invoices = new HashSet<Invoice>();
-            this.Invoices1 = new HashSet<Invoice>();
-        }
-    
         public int ID { get; set; }
         public string username { get; set; }
         public string password { get; set; }
-        public string phoneNumber { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string gender { get; set; }
         public Nullable<System.DateTime> birthDate { get; set; }
         public string address { get; set; }
-        public Nullable<System.DateTime> joinDate { get; set; }
-        public int isNew { get; set; }
+        public System.DateTime joinDate { get; set; }
+        public int Role_ID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices1 { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

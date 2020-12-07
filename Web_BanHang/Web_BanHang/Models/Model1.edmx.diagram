@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0eed4d97a4e64a29975c67fd503f7929" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="BanHangModel.Catalog" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="BanHangModel.Combo" Width="1.5" PointX="6.375" PointY="11.5" />
+        <EntityTypeShape EntityType="BanHangModel.Customer" Width="1.5" PointX="3.75" PointY="16.125" />
+        <EntityTypeShape EntityType="BanHangModel.Employee" Width="1.5" PointX="10" PointY="8" />
+        <EntityTypeShape EntityType="BanHangModel.Invoice" Width="1.5" PointX="6" PointY="16.375" />
+        <EntityTypeShape EntityType="BanHangModel.Product" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="BanHangModel.ProductDetail" Width="1.5" PointX="5.25" PointY="2.875" />
+        <EntityTypeShape EntityType="BanHangModel.Role" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BanHangModel.Storage" Width="1.5" PointX="5.25" PointY="8.75" />
+        <EntityTypeShape EntityType="BanHangModel.InvoiceDetail" Width="1.5" PointX="8.25" PointY="3.875" />
+        <AssociationConnector Association="BanHangModel.FK__Product__Catalog__2F10007B" />
+        <AssociationConnector Association="BanHangModel.FK__InvoiceDe__Combo__3E52440B" />
+        <AssociationConnector Association="BanHangModel.FK__Invoice__Custome__398D8EEE" />
+        <AssociationConnector Association="BanHangModel.FK__Invoice__Shipper__3A81B327" />
+        <AssociationConnector Association="BanHangModel.FK__Employee__Role_I__2A4B4B5E" />
+        <AssociationConnector Association="BanHangModel.FK__InvoiceDe__Invoi__3C69FB99" />
+        <AssociationConnector Association="BanHangModel.FK__InvoiceDe__Produ__3D5E1FD2" />
+        <AssociationConnector Association="BanHangModel.FK__ProductDe__Produ__31EC6D26" />
+        <AssociationConnector Association="BanHangModel.FK__Storage__Product__36B12243" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
