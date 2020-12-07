@@ -19,17 +19,28 @@ namespace Web_BanHang.Controllers
             return View(products.ToList());
         }
 
-        public ActionResult About()
+        public ActionResult Cart()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Checkout()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        public ActionResult Detail()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Register()
+        {
             return View();
         }
     }

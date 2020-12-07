@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+}
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="blog-single.html">Blog Single Sidebar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+<!-- Start Blog Single -->
+<section class="blog-single section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <div class="blog-single-main">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="image">
+                                <img src=@Url.Content("/Content/images/blog-single1.jpg") alt="#">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="main-sidebar shopping-cart">
+                    <h5 class="pb-4">What is Lorem Ipsum?</h5>
+                    <p class="pb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <div class="row">
+                        <div class="col-lg-6 col-6 qty" data-title="Qty">
+                            <div class="input-group">
+                                <div class="button minus">
+                                    <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
+                                        <i class="ti-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="text" name="quant[2]" class="input-number" data-min="1" data-max="100" value="2">
+                                <div class="button plus">
+                                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[2]">
+                                        <i class="ti-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn col-lg-6 col-6">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Blog Single -->
