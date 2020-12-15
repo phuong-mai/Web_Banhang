@@ -5,50 +5,51 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Catalog_Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Catalog_Name" Type="nvarchar" MaxLength="25" />
   </EntityType>
   <EntityType Name="Combo">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Combo_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Product_List" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="startDate" Type="date" Nullable="false" />
-    <Property Name="endDate" Type="date" Nullable="false" />
-    <Property Name="totalMoney" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="discount" Type="varchar" MaxLength="8" Nullable="false" />
-    <Property Name="discountMoney" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Combo_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Product_List" Type="nvarchar" MaxLength="100" />
+    <Property Name="startDate" Type="date" />
+    <Property Name="endDate" Type="date" />
+    <Property Name="totalMoney" Type="varchar" MaxLength="30" />
+    <Property Name="discount" Type="varchar" MaxLength="8" />
+    <Property Name="discountMoney" Type="varchar" MaxLength="30" />
+    <Property Name="Image_Combo" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="phoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="lastName" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="gender" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneNumber" Type="nvarchar" MaxLength="10" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="20" />
+    <Property Name="gender" Type="nvarchar" MaxLength="20" />
     <Property Name="birthDate" Type="date" />
-    <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="60" />
     <Property Name="joinDate" Type="date" />
-    <Property Name="isNew" Type="int" Nullable="false" />
+    <Property Name="isNew" Type="int" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="lastName" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="gender" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="20" />
+    <Property Name="gender" Type="nvarchar" MaxLength="20" />
     <Property Name="birthDate" Type="date" />
-    <Property Name="address" Type="nvarchar" MaxLength="60" Nullable="false" />
-    <Property Name="joinDate" Type="date" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="60" />
+    <Property Name="joinDate" Type="date" />
     <Property Name="Role_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Invoice">
@@ -56,13 +57,13 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Invoice_Name" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Invoice_Name" Type="nvarchar" MaxLength="45" />
     <Property Name="Customer_ID" Type="int" Nullable="false" />
-    <Property Name="Shipper_ID" Type="int" />
-    <Property Name="totalMoney" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="createdDate" Type="date" Nullable="false" />
-    <Property Name="customerAddress" Type="nvarchar" MaxLength="60" Nullable="false" />
-    <Property Name="shipDate" Type="date" Nullable="false" />
+    <Property Name="Shipper_ID" Type="int" Nullable="false" />
+    <Property Name="totalMoney" Type="varchar" MaxLength="50" />
+    <Property Name="createdDate" Type="date" />
+    <Property Name="customerAddress" Type="nvarchar" MaxLength="60" />
+    <Property Name="shipDate" Type="date" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -70,48 +71,48 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
     <Key>
       <PropertyRef Name="Invoice_ID" />
       <PropertyRef Name="Product_ID" />
-      <PropertyRef Name="Amount" />
-      <PropertyRef Name="Price" />
+      <PropertyRef Name="Combo_ID" />
     </Key>
     <Property Name="Invoice_ID" Type="int" Nullable="false" />
     <Property Name="Product_ID" Type="int" Nullable="false" />
-    <Property Name="Combo_ID" Type="int" />
-    <Property Name="Amount" Type="int" Nullable="false" />
-    <Property Name="Price" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Combo_ID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="Price" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Product_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Catalog_ID" Type="int" />
-    <Property Name="Amount" Type="int" Nullable="false" />
-    <Property Name="Price" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Product_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Catalog_ID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="Price" Type="varchar" MaxLength="30" />
     <Property Name="Image_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Detail" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="ProductDetail">
     <Key>
       <PropertyRef Name="Product_ID" />
     </Key>
     <Property Name="Product_ID" Type="int" Nullable="false" />
-    <Property Name="Product_Detail" Type="nvarchar" MaxLength="650" Nullable="false" />
+    <Property Name="Product_Detail" Type="nvarchar" MaxLength="650" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Role_Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Role_Name" Type="nvarchar" MaxLength="25" />
   </EntityType>
   <EntityType Name="Storage">
     <Key>
       <PropertyRef Name="Product_ID" />
     </Key>
     <Property Name="Product_ID" Type="int" Nullable="false" />
-    <Property Name="Amount" Type="int" Nullable="false" />
-    <Property Name="importDate" Type="date" Nullable="false" />
-    <Property Name="exportDate" Type="date" Nullable="false" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="importDate" Type="date" />
+    <Property Name="exportDate" Type="date" />
   </EntityType>
   <Association Name="FK__Employee__Role_I__2A4B4B5E">
     <End Role="Role" Type="Self.Role" Multiplicity="1" />
@@ -138,7 +139,7 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Invoice__Shipper__3A81B327">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
     <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customer">
@@ -150,7 +151,7 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__InvoiceDe__Combo__3E52440B">
-    <End Role="Combo" Type="Self.Combo" Multiplicity="0..1" />
+    <End Role="Combo" Type="Self.Combo" Multiplicity="1" />
     <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Combo">
@@ -186,7 +187,7 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Product__Catalog__2F10007B">
-    <End Role="Catalog" Type="Self.Catalog" Multiplicity="0..1" />
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Catalog">

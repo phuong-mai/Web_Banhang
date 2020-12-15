@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Web_BanHang"
+    "\\Web_BanHang",
+    "\\Web_BanHang\\Web_BanHang",
+    "\\Web_BanHang\\Web_BanHang\\Controllers",
+    "\\Web_BanHang\\Web_BanHang\\Models",
+    "\\Web_BanHang\\Web_BanHang\\Views",
+    "\\Web_BanHang\\Web_BanHang\\Views\\Home"
   ],
-  "SelectedNode": "\\Web_BanHang\\Web_BanHang.sln",
+  "SelectedNode": "\\Web_BanHang\\Web_BanHang\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

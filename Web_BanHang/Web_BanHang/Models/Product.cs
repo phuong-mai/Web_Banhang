@@ -26,7 +26,8 @@ namespace Web_BanHang.Models
         public int Amount { get; set; }
         public string Price { get; set; }
         public string Image_Name { get; set; }
-    
+        public string Detail { get; set; }
+
         public virtual Catalog Catalog { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }

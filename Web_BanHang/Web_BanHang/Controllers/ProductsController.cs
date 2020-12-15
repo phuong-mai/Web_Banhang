@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Web_BanHang.Models;
+using EntityState = System.Data.EntityState;
 
 namespace Web_BanHang.Controllers
 {
@@ -92,7 +93,7 @@ namespace Web_BanHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+                db.Entry(product).State = (System.Data.Entity.EntityState)EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

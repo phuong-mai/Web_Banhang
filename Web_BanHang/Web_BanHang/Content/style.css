@@ -1189,14 +1189,14 @@ Version:1.0
 	background: #fff;
 	overflow: hidden;
 }
-.hero-slider .single-slider {
-	height: auto;
-	background-image: url('images/slider-image2.jpg');
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-    height: 510px;
-}
+	.hero-slider .single-slider {
+		height: auto;
+		background-image: url('https://lh3.googleusercontent.com/KiTPQyLDue22trRgWRRC0qU-DInGtyriqBvQ6k5rSZIFbs0VIMVAPFYt91styNjyO4FfwbQ0THyq9N-0uQ=w1920-rw');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		height: 510px;
+	}
 .hero-slider .text-inner {
 	
 }
