@@ -87,9 +87,11 @@
                                 </a>
                             </div>
                             <div class="sinlge-bar">
-                                <a href="#">
-                                    <span>Fullname | </span><span>Đăng xuất</span>
-                                </a>
+                                @if (Session["FullName"] != null)
+                                {
+                                    <span>@Session["FullName"].ToString()</span>
+                                    <a href="@Url.Action("Logout","Home")"> | Đăng xuất</a>
+                                }
                             </div>
                         </div>
                     </div>
