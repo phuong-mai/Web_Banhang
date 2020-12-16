@@ -110,8 +110,11 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li><a href="#">Tất cả sản phẩm</a></li>
-                                                <li><a href="#">Combo</a></li>                                        
+                                                <li>@Html.ActionLink("Tất cả sản phẩm", "./Index")</li>
+                                                <li>@Html.ActionLink("Laptop", "./Laptop")</li>
+                                                <li>@Html.ActionLink("Điện thoại", "./Phone")</li>
+                                                <li>@Html.ActionLink("Phụ kiện", "./Accessories")</li>
+                                                <li>@Html.ActionLink("Combo", "./Combo")</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -178,7 +181,7 @@
         <div class="footer-top section">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-5 col-md-6 col-12">
+                    <div class="col-lg-12 col-md-12 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue,  magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>

@@ -573,7 +573,7 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

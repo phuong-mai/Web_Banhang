@@ -9,16 +9,20 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Web_BanHang.Models;
+using PagedList;
 
 namespace Web_BanHang.Controllers
 {
     public class HomeController : Controller
     {
         private BanHangEntities db = new BanHangEntities();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var products = db.Products.Include(p => p.Catalog).Include(p => p.ProductDetail).Include(p => p.Storage);
-            return View(products.ToList());
+            if (page == null) page = 1;
+            var products = db.Products.OrderBy(x => x.ID).Include(p => p.Catalog).Include(p => p.ProductDetail).Include(p => p.Storage);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);           
+            return View(products.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Cart()
@@ -31,14 +35,55 @@ namespace Web_BanHang.Controllers
             return View();
         }
 
-        public ActionResult Detail()
+        public ActionResult Detail(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+
+        public ActionResult Laptop()
+        {
+            var products = db.Products.Where(p => p.Catalog_ID == 1).Include(p => p.Catalog).Include(p => p.ProductDetail).Include(p => p.Storage);
+            return View(products.ToList());
+        }
+
+        public ActionResult Phone()
+        {
+            var products = db.Products.Where(p => p.Catalog_ID == 2).Include(p => p.Catalog).Include(p => p.ProductDetail).Include(p => p.Storage);
+            return View(products.ToList());
+        }
+
+        public ActionResult Accessories()
+        {
+            var products = db.Products.Where(p => p.Catalog_ID == 3).Include(p => p.Catalog).Include(p => p.ProductDetail).Include(p => p.Storage);
+            return View(products.ToList());
         }
 
         public ActionResult Combo()
         {
-            return View();
+            return View(db.Comboes.ToList());
+        }
+
+        public ActionResult DetailCombo(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Combo combo = db.Comboes.Find(id);
+            if (combo == null)
+            {
+                return HttpNotFound();
+            }
+            return View(combo);
         }
 
         // GET: Register
@@ -125,6 +170,5 @@ namespace Web_BanHang.Controllers
             Session.Clear();//remove session
             return RedirectToAction("Login");
         }
-
     }
 }

@@ -253,3 +253,8 @@ C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.e
 C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.abstractions.xml
 C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.core.xml
 C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.execution.desktop.xml
+C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\PagedList.dll
+C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\PagedList.Mvc.dll
+C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\PagedList.xml
+C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\PagedList.Mvc.xml
+C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\X.PagedList.dll
