@@ -1,4 +1,4 @@
-﻿
+﻿@model Web_BanHang.Models.Product
 @{
     ViewBag.Title = "Detail";
 }
@@ -10,8 +10,8 @@
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="blog-single.html">Blog Single Sidebar</a></li>
+                        <li><a href="#">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="#">Chi tiết sản phẩm</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,8 +36,9 @@
             </div>
             <div class="col-lg-6 col-12">
                 <div class="main-sidebar shopping-cart">
-                    <h5 class="pb-4">What is Lorem Ipsum?</h5>
-                    <p class="pb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <h5 class="pb-4">@Html.DisplayFor(model => model.Product_Name)</h5>
+                    <p class="pb-4">@Html.DisplayFor(model => model.Price)</p>
+                    <p class="pb-4">@Html.DisplayFor(model => model.Detail)</p>
                     <div class="row">
                         <div class="col-lg-6 col-6 qty" data-title="Qty">
                             <div class="input-group">

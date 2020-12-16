@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Web_BanHang.Models.Product>
+@{
+    ViewBag.Title = "Accessories";
+}
+
+<!-- Start Product Area -->
+<div class="product-area section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Phụ kiện</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="product-info">
+                    <div class="tab-content" id="myTabContent">
+                        <!-- Start Single Tab -->
+                        <div class="tab-pane fade show active" id="man" role="tabpanel">
+                            <div class="tab-single">
+                                <div class="row">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                            <div class="single-product">
+                                                <div class="product-img">
+                                                    <a href="@(Url.Action("Detail", "", new { id = item.ID }))">
+                                                        <img class="default-img" src=@Url.Content("/Content/images/products/p1.jpg") alt="#">
+                                                    </a>
+                                                    <div class="button-head">
+                                                        <div class="product-action-2">
+                                                            <a title="Add to cart" href="#">Thêm vào giỏ hàng</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-content">
+                                                    <h3><a href="@(Url.Action("Detail", "", new { id = item.ID }))">@Html.DisplayFor(modelItem => item.Product_Name)</a></h3>
+                                                    <div class="product-price">                                                       
+                                                        <span>@Html.DisplayFor(modelItem => item.Price)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Product Area -->
