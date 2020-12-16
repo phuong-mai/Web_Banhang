@@ -14,24 +14,14 @@ namespace Web_BanHang.Models
     
     public partial class Invoice
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Invoice()
-        {
-            this.InvoiceDetails = new HashSet<InvoiceDetail>();
-        }
-    
         public int ID { get; set; }
         public string Invoice_Name { get; set; }
-        public int Customer_ID { get; set; }
+        public Nullable<int> Customer_ID { get; set; }
         public Nullable<int> Shipper_ID { get; set; }
-        public string totalMoney { get; set; }
-        public System.DateTime createdDate { get; set; }
+        public Nullable<int> totalMoney { get; set; }
+        public string createdDate { get; set; }
         public string customerAddress { get; set; }
-        public System.DateTime shipDate { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        public virtual Customer Customer1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }
+        public string shipDate { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }

@@ -15,9 +15,9 @@ namespace Web_BanHang.Models
     public partial class Storage
     {
         public int Product_ID { get; set; }
-        public int Amount { get; set; }
-        public System.DateTime importDate { get; set; }
-        public System.DateTime exportDate { get; set; }
+        public Nullable<int> Amount { get; set; }
+        public Nullable<System.DateTime> importDate { get; set; }
+        public Nullable<System.DateTime> exportDate { get; set; }
     
         public virtual Product Product { get; set; }
     }

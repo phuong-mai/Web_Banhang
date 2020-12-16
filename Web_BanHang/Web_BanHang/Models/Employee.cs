@@ -22,8 +22,8 @@ namespace Web_BanHang.Models
         public string gender { get; set; }
         public Nullable<System.DateTime> birthDate { get; set; }
         public string address { get; set; }
-        public System.DateTime joinDate { get; set; }
-        public int Role_ID { get; set; }
+        public Nullable<System.DateTime> joinDate { get; set; }
+        public Nullable<int> Role_ID { get; set; }
     
         public virtual Role Role { get; set; }
     }

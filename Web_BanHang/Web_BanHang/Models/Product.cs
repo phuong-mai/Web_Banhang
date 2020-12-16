@@ -14,23 +14,15 @@ namespace Web_BanHang.Models
     
     public partial class Product
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
-        {
-            this.InvoiceDetails = new HashSet<InvoiceDetail>();
-        }
-    
         public int ID { get; set; }
         public string Product_Name { get; set; }
         public Nullable<int> Catalog_ID { get; set; }
-        public int Amount { get; set; }
-        public string Price { get; set; }
+        public Nullable<int> Amount { get; set; }
+        public Nullable<int> Price { get; set; }
         public string Image_Name { get; set; }
         public string Detail { get; set; }
-
+    
         public virtual Catalog Catalog { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual ProductDetail ProductDetail { get; set; }
         public virtual Storage Storage { get; set; }
     }

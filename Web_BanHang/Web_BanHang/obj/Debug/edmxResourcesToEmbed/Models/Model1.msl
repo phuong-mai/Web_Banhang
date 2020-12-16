@@ -12,7 +12,6 @@
     <EntitySetMapping Name="Comboes">
       <EntityTypeMapping TypeName="BanHangModel.Combo">
         <MappingFragment StoreEntitySet="Combo">
-          <ScalarProperty Name="Image_Combo" ColumnName="Image_Combo" />
           <ScalarProperty Name="discountMoney" ColumnName="discountMoney" />
           <ScalarProperty Name="discount" ColumnName="discount" />
           <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />
@@ -60,6 +59,7 @@
     <EntitySetMapping Name="Invoices">
       <EntityTypeMapping TypeName="BanHangModel.Invoice">
         <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="shipDate" ColumnName="shipDate" />
           <ScalarProperty Name="customerAddress" ColumnName="customerAddress" />
           <ScalarProperty Name="createdDate" ColumnName="createdDate" />

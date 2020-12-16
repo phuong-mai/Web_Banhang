@@ -15,13 +15,9 @@ namespace Web_BanHang.Models
     public partial class InvoiceDetail
     {
         public int Invoice_ID { get; set; }
-        public int Product_ID { get; set; }
+        public Nullable<int> Product_ID { get; set; }
         public Nullable<int> Combo_ID { get; set; }
-        public int Amount { get; set; }
-        public string Price { get; set; }
-    
-        public virtual Combo Combo { get; set; }
-        public virtual Invoice Invoice { get; set; }
-        public virtual Product Product { get; set; }
+        public Nullable<int> Amount { get; set; }
+        public Nullable<int> Price { get; set; }
     }
 }

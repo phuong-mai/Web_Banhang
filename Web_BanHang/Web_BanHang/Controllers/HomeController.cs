@@ -14,6 +14,18 @@ namespace Web_BanHang.Controllers
 {
     public class HomeController : Controller
     {
+        //public class MultipleModelInOneView
+        //{
+        //    public IEnumerable<Web_BanHang.Models.Product> lstMaster { get; set; }
+        //    public IEnumerable<Web_BanHang.Models.> lstOtherRecords { get; set; }
+
+        //    public MultipleModelInOneView()
+        //    {
+        //        lstMaster = new public List<webapplication1.Models.table1>();
+        //        lstOtherRecords = new public List<webapplication1.Models.table2>();
+        //    }
+        //}
+    
         private BanHangEntities db = new BanHangEntities();
         public ActionResult Index()
         {
@@ -124,6 +136,53 @@ namespace Web_BanHang.Controllers
         {
             Session.Clear();//remove session
             return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Buy(int id)
+        {
+            var products = db.Products.Where(s => s.ID.Equals(id)).ToList();
+
+            if (Session["cart"] == null)
+            {
+                List<Item> cart = new List<Item>();
+                cart.Add(new Item { Product = products , Quantity = 1 });
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<Item> cart = (List<Item>)Session["cart"];
+                int index = isExist(id);
+                if (index != -1)
+                {
+                    cart[index].Quantity++;
+                }
+                else
+                {
+                    cart.Add(new Item { Product = products, Quantity = 1 });
+                }
+                Session["cart"] = cart;
+            }
+            return RedirectToAction("Index");
+
+        }
+        public ActionResult Remove(int id)
+        {
+            List<Item> cart = (List<Item>)Session["cart"];
+            int index = isExist(id);
+            cart.RemoveAt(index);
+            Session["cart"] = cart;
+            return RedirectToAction("Cart");
+        }
+
+        private int isExist(int id)
+        {
+            List<Item> cart = (List<Item>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].Product[0].ID.Equals(id))
+                    return i;
+            return -1;
         }
 
     }

@@ -15,29 +15,9 @@
       <End Role="Catalog" EntitySet="Catalogs" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
-    <AssociationSet Name="FK__InvoiceDe__Combo__3E52440B" Association="BanHangModel.FK__InvoiceDe__Combo__3E52440B">
-      <End Role="Combo" EntitySet="Comboes" />
-      <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Invoice__Custome__398D8EEE" Association="BanHangModel.FK__Invoice__Custome__398D8EEE">
-      <End Role="Customer" EntitySet="Customers" />
-      <End Role="Invoice" EntitySet="Invoices" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Invoice__Shipper__3A81B327" Association="BanHangModel.FK__Invoice__Shipper__3A81B327">
-      <End Role="Customer" EntitySet="Customers" />
-      <End Role="Invoice" EntitySet="Invoices" />
-    </AssociationSet>
     <AssociationSet Name="FK__Employee__Role_I__2A4B4B5E" Association="BanHangModel.FK__Employee__Role_I__2A4B4B5E">
       <End Role="Role" EntitySet="Roles" />
       <End Role="Employee" EntitySet="Employees" />
-    </AssociationSet>
-    <AssociationSet Name="FK__InvoiceDe__Invoi__3C69FB99" Association="BanHangModel.FK__InvoiceDe__Invoi__3C69FB99">
-      <End Role="Invoice" EntitySet="Invoices" />
-      <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK__InvoiceDe__Produ__3D5E1FD2" Association="BanHangModel.FK__InvoiceDe__Produ__3D5E1FD2">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
     </AssociationSet>
     <AssociationSet Name="FK__ProductDe__Produ__31EC6D26" Association="BanHangModel.FK__ProductDe__Produ__31EC6D26">
       <End Role="Product" EntitySet="Products" />
@@ -53,7 +33,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Catalog_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Catalog_Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Products" Relationship="BanHangModel.FK__Product__Catalog__2F10007B" FromRole="Catalog" ToRole="Product" />
   </EntityType>
   <EntityType Name="Combo">
@@ -65,11 +45,9 @@
     <Property Name="Product_List" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="startDate" Type="DateTime" Precision="0" />
     <Property Name="endDate" Type="DateTime" Precision="0" />
-    <Property Name="totalMoney" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="discount" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-    <Property Name="discountMoney" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="Image_Combo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="InvoiceDetails" Relationship="BanHangModel.FK__InvoiceDe__Combo__3E52440B" FromRole="Combo" ToRole="InvoiceDetail" />
+    <Property Name="totalMoney" Type="Int32" />
+    <Property Name="discount" Type="Int32" />
+    <Property Name="discountMoney" Type="Int32" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -86,8 +64,6 @@
     <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="joinDate" Type="DateTime" Precision="0" />
     <Property Name="isNew" Type="Int32" />
-    <NavigationProperty Name="Invoices" Relationship="BanHangModel.FK__Invoice__Custome__398D8EEE" FromRole="Customer" ToRole="Invoice" />
-    <NavigationProperty Name="Invoices1" Relationship="BanHangModel.FK__Invoice__Shipper__3A81B327" FromRole="Customer" ToRole="Invoice" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -102,7 +78,7 @@
     <Property Name="birthDate" Type="DateTime" Precision="0" />
     <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="joinDate" Type="DateTime" Precision="0" />
-    <Property Name="Role_ID" Type="Int32" Nullable="false" />
+    <Property Name="Role_ID" Type="Int32" />
     <NavigationProperty Name="Role" Relationship="BanHangModel.FK__Employee__Role_I__2A4B4B5E" FromRole="Employee" ToRole="Role" />
   </EntityType>
   <EntityType Name="Invoice">
@@ -111,15 +87,13 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Invoice_Name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-    <Property Name="Customer_ID" Type="Int32" Nullable="false" />
-    <Property Name="Shipper_ID" Type="Int32" Nullable="false" />
-    <Property Name="totalMoney" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="createdDate" Type="DateTime" Precision="0" />
+    <Property Name="Customer_ID" Type="Int32" />
+    <Property Name="Shipper_ID" Type="Int32" />
+    <Property Name="totalMoney" Type="Int32" />
+    <Property Name="createdDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="customerAddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-    <Property Name="shipDate" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="Customer" Relationship="BanHangModel.FK__Invoice__Custome__398D8EEE" FromRole="Invoice" ToRole="Customer" />
-    <NavigationProperty Name="Customer1" Relationship="BanHangModel.FK__Invoice__Shipper__3A81B327" FromRole="Invoice" ToRole="Customer" />
-    <NavigationProperty Name="InvoiceDetails" Relationship="BanHangModel.FK__InvoiceDe__Invoi__3C69FB99" FromRole="Invoice" ToRole="InvoiceDetail" />
+    <Property Name="shipDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -127,13 +101,12 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Catalog_ID" Type="Int32" Nullable="false" />
+    <Property Name="Catalog_ID" Type="Int32" />
     <Property Name="Amount" Type="Int32" />
-    <Property Name="Price" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Int32" />
     <Property Name="Image_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Detail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Catalog" Relationship="BanHangModel.FK__Product__Catalog__2F10007B" FromRole="Product" ToRole="Catalog" />
-    <NavigationProperty Name="InvoiceDetails" Relationship="BanHangModel.FK__InvoiceDe__Produ__3D5E1FD2" FromRole="Product" ToRole="InvoiceDetail" />
     <NavigationProperty Name="ProductDetail" Relationship="BanHangModel.FK__ProductDe__Produ__31EC6D26" FromRole="Product" ToRole="ProductDetail" />
     <NavigationProperty Name="Storage" Relationship="BanHangModel.FK__Storage__Product__36B12243" FromRole="Product" ToRole="Storage" />
   </EntityType>
@@ -150,7 +123,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Role_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Role_Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Employees" Relationship="BanHangModel.FK__Employee__Role_I__2A4B4B5E" FromRole="Role" ToRole="Employee" />
   </EntityType>
   <EntityType Name="Storage">
@@ -166,20 +139,15 @@
   <EntityType Name="InvoiceDetail">
     <Key>
       <PropertyRef Name="Invoice_ID" />
-      <PropertyRef Name="Product_ID" />
-      <PropertyRef Name="Combo_ID" />
     </Key>
     <Property Name="Invoice_ID" Type="Int32" Nullable="false" />
-    <Property Name="Product_ID" Type="Int32" Nullable="false" />
-    <Property Name="Combo_ID" Type="Int32" Nullable="false" />
+    <Property Name="Product_ID" Type="Int32" />
+    <Property Name="Combo_ID" Type="Int32" />
     <Property Name="Amount" Type="Int32" />
-    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Combo" Relationship="BanHangModel.FK__InvoiceDe__Combo__3E52440B" FromRole="InvoiceDetail" ToRole="Combo" />
-    <NavigationProperty Name="Invoice" Relationship="BanHangModel.FK__InvoiceDe__Invoi__3C69FB99" FromRole="InvoiceDetail" ToRole="Invoice" />
-    <NavigationProperty Name="Product" Relationship="BanHangModel.FK__InvoiceDe__Produ__3D5E1FD2" FromRole="InvoiceDetail" ToRole="Product" />
+    <Property Name="Price" Type="Int32" />
   </EntityType>
   <Association Name="FK__Product__Catalog__2F10007B">
-    <End Type="BanHangModel.Catalog" Role="Catalog" Multiplicity="1" />
+    <End Type="BanHangModel.Catalog" Role="Catalog" Multiplicity="0..1" />
     <End Type="BanHangModel.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Catalog">
@@ -190,44 +158,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__InvoiceDe__Combo__3E52440B">
-    <End Type="BanHangModel.Combo" Role="Combo" Multiplicity="1" />
-    <End Type="BanHangModel.InvoiceDetail" Role="InvoiceDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Combo">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="InvoiceDetail">
-        <PropertyRef Name="Combo_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Invoice__Custome__398D8EEE">
-    <End Type="BanHangModel.Customer" Role="Customer" Multiplicity="1" />
-    <End Type="BanHangModel.Invoice" Role="Invoice" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Invoice">
-        <PropertyRef Name="Customer_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Invoice__Shipper__3A81B327">
-    <End Type="BanHangModel.Customer" Role="Customer" Multiplicity="1" />
-    <End Type="BanHangModel.Invoice" Role="Invoice" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Invoice">
-        <PropertyRef Name="Shipper_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Employee__Role_I__2A4B4B5E">
-    <End Type="BanHangModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="BanHangModel.Role" Role="Role" Multiplicity="0..1" />
     <End Type="BanHangModel.Employee" Role="Employee" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Role">
@@ -235,30 +167,6 @@
       </Principal>
       <Dependent Role="Employee">
         <PropertyRef Name="Role_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__InvoiceDe__Invoi__3C69FB99">
-    <End Type="BanHangModel.Invoice" Role="Invoice" Multiplicity="1" />
-    <End Type="BanHangModel.InvoiceDetail" Role="InvoiceDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Invoice">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="InvoiceDetail">
-        <PropertyRef Name="Invoice_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__InvoiceDe__Produ__3D5E1FD2">
-    <End Type="BanHangModel.Product" Role="Product" Multiplicity="1" />
-    <End Type="BanHangModel.InvoiceDetail" Role="InvoiceDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="InvoiceDetail">
-        <PropertyRef Name="Product_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

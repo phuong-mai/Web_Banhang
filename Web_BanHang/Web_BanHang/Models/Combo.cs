@@ -14,22 +14,13 @@ namespace Web_BanHang.Models
     
     public partial class Combo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Combo()
-        {
-            this.InvoiceDetails = new HashSet<InvoiceDetail>();
-        }
-    
         public int ID { get; set; }
         public string Combo_Name { get; set; }
         public string Product_List { get; set; }
-        public System.DateTime startDate { get; set; }
-        public System.DateTime endDate { get; set; }
-        public string totalMoney { get; set; }
-        public string discount { get; set; }
-        public string discountMoney { get; set; }
-        public string Image_Combo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }
+        public Nullable<System.DateTime> startDate { get; set; }
+        public Nullable<System.DateTime> endDate { get; set; }
+        public Nullable<int> totalMoney { get; set; }
+        public Nullable<int> discount { get; set; }
+        public Nullable<int> discountMoney { get; set; }
     }
 }

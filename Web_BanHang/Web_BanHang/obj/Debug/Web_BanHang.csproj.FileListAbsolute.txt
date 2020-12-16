@@ -253,3 +253,9 @@ C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.e
 C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.abstractions.xml
 C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.core.xml
 C:\Users\Phuong Nhi\Source\Repos\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.execution.desktop.xml
+C:\Users\Admin\Desktop\sale\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.abstractions.dll
+C:\Users\Admin\Desktop\sale\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.core.dll
+C:\Users\Admin\Desktop\sale\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.execution.desktop.dll
+C:\Users\Admin\Desktop\sale\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.abstractions.xml
+C:\Users\Admin\Desktop\sale\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.core.xml
+C:\Users\Admin\Desktop\sale\Web_BanHang\Web_BanHang\Web_BanHang\bin\xunit.execution.desktop.xml

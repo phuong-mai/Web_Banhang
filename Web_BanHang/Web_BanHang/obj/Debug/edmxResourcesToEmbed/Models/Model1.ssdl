@@ -5,7 +5,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Catalog_Name" Type="nvarchar" MaxLength="25" />
+    <Property Name="Catalog_Name" Type="nvarchar" MaxLength="25" Nullable="false" />
   </EntityType>
   <EntityType Name="Combo">
     <Key>
@@ -16,10 +16,9 @@
     <Property Name="Product_List" Type="nvarchar" MaxLength="100" />
     <Property Name="startDate" Type="date" />
     <Property Name="endDate" Type="date" />
-    <Property Name="totalMoney" Type="varchar" MaxLength="30" />
-    <Property Name="discount" Type="varchar" MaxLength="8" />
-    <Property Name="discountMoney" Type="varchar" MaxLength="30" />
-    <Property Name="Image_Combo" Type="varchar" MaxLength="250" />
+    <Property Name="totalMoney" Type="int" />
+    <Property Name="discount" Type="int" />
+    <Property Name="discountMoney" Type="int" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -50,7 +49,7 @@
     <Property Name="birthDate" Type="date" />
     <Property Name="address" Type="nvarchar" MaxLength="60" />
     <Property Name="joinDate" Type="date" />
-    <Property Name="Role_ID" Type="int" Nullable="false" />
+    <Property Name="Role_ID" Type="int" />
   </EntityType>
   <EntityType Name="Invoice">
     <Key>
@@ -58,26 +57,25 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Invoice_Name" Type="nvarchar" MaxLength="45" />
-    <Property Name="Customer_ID" Type="int" Nullable="false" />
-    <Property Name="Shipper_ID" Type="int" Nullable="false" />
-    <Property Name="totalMoney" Type="varchar" MaxLength="50" />
-    <Property Name="createdDate" Type="date" />
+    <Property Name="Customer_ID" Type="int" />
+    <Property Name="Shipper_ID" Type="int" />
+    <Property Name="totalMoney" Type="int" />
+    <Property Name="createdDate" Type="varchar" MaxLength="50" />
     <Property Name="customerAddress" Type="nvarchar" MaxLength="60" />
-    <Property Name="shipDate" Type="date" />
+    <Property Name="shipDate" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="InvoiceDetail">
     <Key>
       <PropertyRef Name="Invoice_ID" />
-      <PropertyRef Name="Product_ID" />
-      <PropertyRef Name="Combo_ID" />
     </Key>
     <Property Name="Invoice_ID" Type="int" Nullable="false" />
-    <Property Name="Product_ID" Type="int" Nullable="false" />
-    <Property Name="Combo_ID" Type="int" Nullable="false" />
+    <Property Name="Product_ID" Type="int" />
+    <Property Name="Combo_ID" Type="int" />
     <Property Name="Amount" Type="int" />
-    <Property Name="Price" Type="varchar" MaxLength="50" />
+    <Property Name="Price" Type="int" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -85,11 +83,11 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Product_Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Catalog_ID" Type="int" Nullable="false" />
+    <Property Name="Catalog_ID" Type="int" />
     <Property Name="Amount" Type="int" />
-    <Property Name="Price" Type="varchar" MaxLength="30" />
+    <Property Name="Price" Type="int" />
     <Property Name="Image_Name" Type="nvarchar" MaxLength="100" />
-    <Property Name="Detail" Type="nvarchar" MaxLength="250" />
+    <Property Name="Detail" Type="nvarchar" MaxLength="45" />
   </EntityType>
   <EntityType Name="ProductDetail">
     <Key>
@@ -103,7 +101,7 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Role_Name" Type="nvarchar" MaxLength="25" />
+    <Property Name="Role_Name" Type="nvarchar" MaxLength="25" Nullable="false" />
   </EntityType>
   <EntityType Name="Storage">
     <Key>
@@ -115,7 +113,7 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
     <Property Name="exportDate" Type="date" />
   </EntityType>
   <Association Name="FK__Employee__Role_I__2A4B4B5E">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Role">
@@ -126,68 +124,8 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Invoice__Custome__398D8EEE">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Invoice">
-        <PropertyRef Name="Customer_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Invoice__Shipper__3A81B327">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Invoice">
-        <PropertyRef Name="Shipper_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__InvoiceDe__Combo__3E52440B">
-    <End Role="Combo" Type="Self.Combo" Multiplicity="1" />
-    <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Combo">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="InvoiceDetail">
-        <PropertyRef Name="Combo_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__InvoiceDe__Invoi__3C69FB99">
-    <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
-    <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Invoice">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="InvoiceDetail">
-        <PropertyRef Name="Invoice_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__InvoiceDe__Produ__3D5E1FD2">
-    <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="InvoiceDetail">
-        <PropertyRef Name="Product_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Product__Catalog__2F10007B">
-    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="0..1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Catalog">
@@ -244,26 +182,6 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
     <AssociationSet Name="FK__Employee__Role_I__2A4B4B5E" Association="Self.FK__Employee__Role_I__2A4B4B5E">
       <End Role="Role" EntitySet="Role" />
       <End Role="Employee" EntitySet="Employee" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Invoice__Custome__398D8EEE" Association="Self.FK__Invoice__Custome__398D8EEE">
-      <End Role="Customer" EntitySet="Customer" />
-      <End Role="Invoice" EntitySet="Invoice" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Invoice__Shipper__3A81B327" Association="Self.FK__Invoice__Shipper__3A81B327">
-      <End Role="Customer" EntitySet="Customer" />
-      <End Role="Invoice" EntitySet="Invoice" />
-    </AssociationSet>
-    <AssociationSet Name="FK__InvoiceDe__Combo__3E52440B" Association="Self.FK__InvoiceDe__Combo__3E52440B">
-      <End Role="Combo" EntitySet="Combo" />
-      <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
-    </AssociationSet>
-    <AssociationSet Name="FK__InvoiceDe__Invoi__3C69FB99" Association="Self.FK__InvoiceDe__Invoi__3C69FB99">
-      <End Role="Invoice" EntitySet="Invoice" />
-      <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
-    </AssociationSet>
-    <AssociationSet Name="FK__InvoiceDe__Produ__3D5E1FD2" Association="Self.FK__InvoiceDe__Produ__3D5E1FD2">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
     </AssociationSet>
     <AssociationSet Name="FK__Product__Catalog__2F10007B" Association="Self.FK__Product__Catalog__2F10007B">
       <End Role="Catalog" EntitySet="Catalog" />
