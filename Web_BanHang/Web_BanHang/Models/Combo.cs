@@ -22,5 +22,6 @@ namespace Web_BanHang.Models
         public Nullable<int> totalMoney { get; set; }
         public Nullable<int> discount { get; set; }
         public Nullable<int> discountMoney { get; set; }
+        public string Image_Combo { get; set; }
     }
 }

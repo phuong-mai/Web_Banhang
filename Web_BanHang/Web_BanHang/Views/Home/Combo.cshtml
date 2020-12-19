@@ -26,14 +26,19 @@
                                         <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                                             <div class="single-product">
                                                 <div class="product-img">
-                                                    <a href="@(Url.Action("Detail", "", new { id = item.ID }))">
-                                                        <img class="default-img" src=@Url.Content("/Content/images/products/p1.jpg") alt="#">
+                                                    <a href="@(Url.Action("DetailCombo", "", new { id = item.ID }))">
+                                                        <img class="default-img" src=@Url.Content("/Content/images/products/" + item.Image_Combo) alt="#">
                                                     </a>
-                                                    <div class="button-head">
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Thêm vào giỏ hàng</a>
-                                                        </div>
-                                                    </div>
+                                                    @using (Html.BeginForm("Buy", "Home", new { id = item.ID }, FormMethod.Post))
+                                                    {
+                                                        @Html.AntiForgeryToken()
+                                                        @*<button class="ml-5" type="submit">Thêm vô giỏ hàng</button>*@
+                                                        <button type="submit" class="button-head">
+                                                            <div class="product-action-2 align-content-center">
+                                                                Thêm vào giỏ hàng
+                                                            </div>
+                                                        </button>
+                                                    }
                                                 </div>
                                                 <div class="product-content">
                                                     <h3><a href="@(Url.Action("DetailCombo", "", new { id = item.ID }))">@Html.DisplayFor(modelItem => item.Combo_Name)</a></h3>

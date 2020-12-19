@@ -12,6 +12,7 @@
     <EntitySetMapping Name="Comboes">
       <EntityTypeMapping TypeName="BanHangModel.Combo">
         <MappingFragment StoreEntitySet="Combo">
+          <ScalarProperty Name="Image_Combo" ColumnName="Image_Combo" />
           <ScalarProperty Name="discountMoney" ColumnName="discountMoney" />
           <ScalarProperty Name="discount" ColumnName="discount" />
           <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />

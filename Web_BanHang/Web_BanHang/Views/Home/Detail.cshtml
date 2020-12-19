@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="image">
-                                <img src=@Url.Content("/Content/images/blog-single1.jpg") alt="#">
+                                <img src=@Url.Content("/Content/images/products/" + @Html.DisplayFor(model => model.Image_Name)) alt="#">
                             </div>
                         </div>
                     </div>
@@ -39,24 +39,13 @@
                     <h5 class="pb-4">@Html.DisplayFor(model => model.Product_Name)</h5>
                     <p class="pb-4">@Html.DisplayFor(model => model.Price)</p>
                     <p class="pb-4">@Html.DisplayFor(model => model.Detail)</p>
-                    <div class="row">
-                        <div class="col-lg-6 col-6 qty" data-title="Qty">
-                            <div class="input-group">
-                                <div class="button minus">
-                                    <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
-                                        <i class="ti-minus"></i>
-                                    </button>
-                                </div>
-                                <input type="text" name="quant[2]" class="input-number" data-min="1" data-max="100" value="2">
-                                <div class="button plus">
-                                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[2]">
-                                        <i class="ti-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
+                    @using (Html.BeginForm("Buy", "Home", new { id = @Html.DisplayFor(model => model.Storage.Product_ID) }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <button type="submit" class="btn col-lg-6 col-6">Thêm vào giỏ hàng</button>
                         </div>
-                        <button type="submit" class="btn col-lg-6 col-6">Thêm vào giỏ hàng</button>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

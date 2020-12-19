@@ -48,6 +48,7 @@
     <Property Name="totalMoney" Type="Int32" />
     <Property Name="discount" Type="Int32" />
     <Property Name="discountMoney" Type="Int32" />
+    <Property Name="Image_Combo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>

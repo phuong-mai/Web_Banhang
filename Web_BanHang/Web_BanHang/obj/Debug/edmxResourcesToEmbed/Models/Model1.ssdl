@@ -19,6 +19,7 @@
     <Property Name="totalMoney" Type="int" />
     <Property Name="discount" Type="int" />
     <Property Name="discountMoney" Type="int" />
+    <Property Name="Image_Combo" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>

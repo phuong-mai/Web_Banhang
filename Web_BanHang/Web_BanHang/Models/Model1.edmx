@@ -24,6 +24,7 @@
           <Property Name="totalMoney" Type="int" />
           <Property Name="discount" Type="int" />
           <Property Name="discountMoney" Type="int" />
+          <Property Name="Image_Combo" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -253,6 +254,7 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
           <Property Name="totalMoney" Type="Int32" />
           <Property Name="discount" Type="Int32" />
           <Property Name="discountMoney" Type="Int32" />
+          <Property Name="Image_Combo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -416,6 +418,7 @@ warning 6002: The table/view 'BanHang.dbo.InvoiceDetail' does not have a primary
           <EntitySetMapping Name="Comboes">
             <EntityTypeMapping TypeName="BanHangModel.Combo">
               <MappingFragment StoreEntitySet="Combo">
+                <ScalarProperty Name="Image_Combo" ColumnName="Image_Combo" />
                 <ScalarProperty Name="discountMoney" ColumnName="discountMoney" />
                 <ScalarProperty Name="discount" ColumnName="discount" />
                 <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />

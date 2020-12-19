@@ -11,7 +11,7 @@
                 <div class="bread-inner">
                     <ul class="bread-list">
                         <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="blog-single.html">Cart</a></li>
+                        <li class="active"><a href="blog-single.html">Giỏ hàng</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,7 +44,7 @@
 
                                 <tr>
 
-                                    <td class="image" data-title="No"><img src="images\cart3.jpg" alt="#"></td>
+                                    <td class="image" data-title="No"><img src="@Url.Content("/Content/images/products/" + item.Product[0].Image_Name)" alt="#"></td>
                                     <td class="product-des" data-title="Description">
                                         <p class="product-name"><a href="#">@item.Product[0].Product_Name</a></p>
                                         <p class="product-des">@item.Product[0].Detail</p>
@@ -54,16 +54,16 @@
                                         <!-- Input Order -->
                                         <div class="input-group">
                                             @*<div class="button minus">
-                                                <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[@item.Product[0].Product_Name]">
-                                                    <i class="ti-minus"></i>
-                                                </button>
-                                            </div>*@
+                                                    <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[@item.Product[0].Product_Name]">
+                                                        <i class="ti-minus"></i>
+                                                    </button>
+                                                </div>*@
                                             <input readonly type="text" name="quant[@item.Product[0].Product_Name]" class="input-number" data-min="1" data-max="100" value="@item.Quantity">
                                             @*<div class="button plus">
-                                                <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[@item.Product[0].Product_Name]">
-                                                    <i class="ti-plus"></i>
-                                                </button>
-                                            </div>*@
+                                                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[@item.Product[0].Product_Name]">
+                                                        <i class="ti-plus"></i>
+                                                    </button>
+                                                </div>*@
                                         </div>
                                         <!--/ End Input Order -->
                                     </td>
@@ -107,12 +107,6 @@
                                                 @String.Format("{0:0,0} đ", @total)
                                             </span>
                                         </li>
-
-                                        <li class="last">
-                                            Bạn phải trả<span>
-                                                @String.Format("{0:0,0} đ", @total)
-                                            </span>
-                                        </li>
                                     }
                                     else
                                     {
@@ -121,19 +115,10 @@
                                                 0
                                             </span>
                                         </li>
-
-                                        <li class="last">
-                                            Bạn phải trả<span>
-
-                                                0
-                                            </span>
-                                        </li>
-
                                     }
                                 </ul>
                                 <div class="button5">
-                                    <a href="#" class="btn">Thanh Toán</a>
-                                    <a href="#" class="btn">Tiếp tục mua sắm</a>
+                                    <a href="@Url.Action("Checkout","Home")" class="btn">Thanh Toán</a>                                
                                 </div>
                             </div>
                         </div>

@@ -32,7 +32,7 @@ namespace Web_BanHang.Controllers
         {
             if (page == null) page = 1;
             var products = db.Products.OrderBy(x => x.ID).Include(p => p.Catalog).Include(p => p.ProductDetail).Include(p => p.Storage);
-            int pageSize = 3;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);           
             return View(products.ToPagedList(pageNumber, pageSize));
         }
@@ -208,7 +208,7 @@ namespace Web_BanHang.Controllers
                 }
                 Session["cart"] = cart;
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Cart");
 
         }
         public ActionResult Remove(int id)

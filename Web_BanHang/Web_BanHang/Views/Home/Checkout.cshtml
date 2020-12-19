@@ -11,7 +11,7 @@
                 <div class="bread-inner">
                     <ul class="bread-list">
                         <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="blog-single.html">Checkout</a></li>
+                        <li class="active"><a href="blog-single.html">Thông tin đặt hàng</a></li>
                     </ul>
                 </div>
             </div>
@@ -25,28 +25,15 @@
         <div class="row">
             <div class="col-lg-8 col-12">
                 <div class="checkout-form">
-                    <h2>Make Your Checkout Here</h2>
-                    <p>Please register in order to checkout more quickly</p>
                     <!-- Form -->
                     <form class="form" method="post" action="#">
                         <div class="row">
-
-
-                            <div class="col-lg-6 col-md-6 col-12">
+                            <div class="col-lg-12 col-md-12 col-12">
                                 <div class="form-group">
-                                    <label>Address Line 1<span>*</span></label>
+                                    <label>Địa chỉ<span>*</span></label>
                                     <input type="text" name="address" placeholder="" required="required">
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <div class="form-group">
-                                    <label>Ship Date<span>*</span></label>
-                                    <input type="date" name="ship_date" placeholder="" required="required">
-                                </div>
-                            </div>
-
-
-
                         </div>
                     </form>
                     <!--/ End Form -->
@@ -56,54 +43,63 @@
                 <div class="order-details">
                     <!-- Order Widget -->
                     <div class="single-widget">
-                        <h2>CART  TOTALS</h2>
+                        <h2>Thanh toán</h2>
                         <div class="content">
                             <ul>
                                 @if (Session["cart"] != null)
                                 {
                                     <li>
-                                        Sub Total<span>
+                                        Tạm tính<span>
                                             @{List<Item> cart = (List<Item>)Session["cart"];
                                                 var total = cart.Sum(item => item.Product[0].Price * item.Quantity);
                                             }
-                                            @String.Format("{0:0,0} đ", total);
+                                            @String.Format("{0:0,0} đ", total)
                                         </span>
                                     </li>
-                                                }
-                                                else
-                                                {
-                            <li>Sub Total<span>0 đ</span></li>}
+                                }
+                                else
+                                {
+                                    <li>Tạm tính<span>0 đ</span></li>
+                                }
+                                <li>Phí giao hàng<span>30. 000</span></li>
 
-                                <li>(+) Shipping<span>$10.00</span></li>
-                                <li class="last">Total<span>$340.00</span></li>
+                                @if (Session["cart"] != null)
+                                {
+                                    <li class="last">
+                                        Tổng cộng<span>
+                                            @{List<Item> cart = (List<Item>)Session["cart"];
+                                                var total = cart.Sum(item => item.Product[0].Price * item.Quantity) + 30000;
+                                            }
+                                            @String.Format("{0:0,0} đ", total)
+                                        </span>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>Tổng cộng<span>0 đ</span></li>
+                                }
                             </ul>
                         </div>
                     </div>
                     <!--/ End Order Widget -->
                     <!-- Order Widget -->
                     <div class="single-widget">
-                        <h2>Payments</h2>
+                        <h2>Phương thức thanh toán</h2>
                         <div class="content">
                             <div class="checkbox">
-                                <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label>
-                                <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Cash On Delivery</label>
+                                <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Tiền mặt</label>
+                                <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Chuyển khoản</label>
                                 <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox"> PayPal</label>
                             </div>
                         </div>
                     </div>
                     <!--/ End Order Widget -->
-                    <!-- Payment Method Widget -->
-                    <div class="single-widget payement">
-                        <div class="content">
-                            <img src="images\payment-method.png" alt="#">
-                        </div>
-                    </div>
-                    <!--/ End Payment Method Widget -->
+
                     <!-- Button Widget -->
                     <div class="single-widget get-button">
                         <div class="content">
                             <div class="button">
-                                <a href="#" class="btn">proceed to checkout</a>
+                                <a href="#" class="btn">Đặt hàng</a>
                             </div>
                         </div>
                     </div>
