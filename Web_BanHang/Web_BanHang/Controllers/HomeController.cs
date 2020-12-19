@@ -228,6 +228,35 @@ namespace Web_BanHang.Controllers
                     return i;
             return -1;
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToInvoice(int id)
+        {
+            var products = db.Products.Where(s => s.ID.Equals(id)).ToList();
+
+            if (Session["cart"] == null)
+            {
+                List<Item> cart = new List<Item>();
+                cart.Add(new Item { Product = products, Quantity = 1 });
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<Item> cart = (List<Item>)Session["cart"];
+                int index = isExist(id);
+                if (index != -1)
+                {
+                    cart[index].Quantity++;
+                }
+                else
+                {
+                    cart.Add(new Item { Product = products, Quantity = 1 });
+                }
+                Session["cart"] = cart;
+            }
+            return RedirectToAction("Index");
+
+        }
 
     }
 }
