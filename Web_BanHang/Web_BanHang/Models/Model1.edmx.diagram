@@ -10,20 +10,20 @@
         <AssociationConnector Association="BanHangModel.FK__Invoice__Shipper__3A81B327" />
         <AssociationConnector Association="BanHangModel.FK__InvoiceDe__Invoi__3C69FB99" />
         <AssociationConnector Association="BanHangModel.FK__InvoiceDe__Produ__3D5E1FD2" />
-        <EntityTypeShape EntityType="BanHangModel.Catalog" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="BanHangModel.Catalog" Width="1.5" PointX="0.75" PointY="2.5" />
         <EntityTypeShape EntityType="BanHangModel.Combo" Width="1.5" PointX="5.75" PointY="6.75" />
         <EntityTypeShape EntityType="BanHangModel.Customer" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="BanHangModel.Employee" Width="1.5" PointX="3" PointY="7" />
-        <EntityTypeShape EntityType="BanHangModel.Invoice" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BanHangModel.Invoice" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BanHangModel.InvoiceDetail" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="BanHangModel.Product" Width="1.5" PointX="3" PointY="1.75" />
-        <EntityTypeShape EntityType="BanHangModel.ProductDetail" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="BanHangModel.ProductDetail" Width="1.5" PointX="5.25" PointY="3.875" />
         <EntityTypeShape EntityType="BanHangModel.Role" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="BanHangModel.Storage" Width="1.5" PointX="5.25" PointY="3.375" />
-        <EntityTypeShape EntityType="BanHangModel.InvoiceDetail" Width="1.5" PointX="7.75" PointY="8.75" />
-        <AssociationConnector Association="BanHangModel.FK__Product__Catalog__2F10007B" />
-        <AssociationConnector Association="BanHangModel.FK__Employee__Role_I__2A4B4B5E" />
-        <AssociationConnector Association="BanHangModel.FK__ProductDe__Produ__31EC6D26" />
-        <AssociationConnector Association="BanHangModel.FK__Storage__Product__36B12243" />
+        <EntityTypeShape EntityType="BanHangModel.Storage" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="BanHangModel.FK__Product__Catalog__37A5467C" />
+        <AssociationConnector Association="BanHangModel.FK__Employee__Role_I__36B12243" />
+        <AssociationConnector Association="BanHangModel.FK__ProductDe__Produ__38996AB5" />
+        <AssociationConnector Association="BanHangModel.FK__Storage__Product__398D8EEE" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -5,20 +5,15 @@ using System.Web;
 
 namespace Web_BanHang.Models
 {
-    public class Item
+    public class alert
     {
-        public List<Product> Product
+        public String Name
         {
             get;
             set;
         }
 
-        public int Quantity
-        {
-            get;
-            set;
-        }
-        public int Stock
+        public String Alert
         {
             get;
             set;

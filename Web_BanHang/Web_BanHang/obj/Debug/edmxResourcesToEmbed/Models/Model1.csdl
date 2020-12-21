@@ -6,24 +6,24 @@
     <EntitySet Name="Customers" EntityType="BanHangModel.Customer" />
     <EntitySet Name="Employees" EntityType="BanHangModel.Employee" />
     <EntitySet Name="Invoices" EntityType="BanHangModel.Invoice" />
+    <EntitySet Name="InvoiceDetails" EntityType="BanHangModel.InvoiceDetail" />
     <EntitySet Name="Products" EntityType="BanHangModel.Product" />
     <EntitySet Name="ProductDetails" EntityType="BanHangModel.ProductDetail" />
     <EntitySet Name="Roles" EntityType="BanHangModel.Role" />
     <EntitySet Name="Storages" EntityType="BanHangModel.Storage" />
-    <EntitySet Name="InvoiceDetails" EntityType="BanHangModel.InvoiceDetail" />
-    <AssociationSet Name="FK__Product__Catalog__2F10007B" Association="BanHangModel.FK__Product__Catalog__2F10007B">
+    <AssociationSet Name="FK__Product__Catalog__37A5467C" Association="BanHangModel.FK__Product__Catalog__37A5467C">
       <End Role="Catalog" EntitySet="Catalogs" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
-    <AssociationSet Name="FK__Employee__Role_I__2A4B4B5E" Association="BanHangModel.FK__Employee__Role_I__2A4B4B5E">
+    <AssociationSet Name="FK__Employee__Role_I__36B12243" Association="BanHangModel.FK__Employee__Role_I__36B12243">
       <End Role="Role" EntitySet="Roles" />
       <End Role="Employee" EntitySet="Employees" />
     </AssociationSet>
-    <AssociationSet Name="FK__ProductDe__Produ__31EC6D26" Association="BanHangModel.FK__ProductDe__Produ__31EC6D26">
+    <AssociationSet Name="FK__ProductDe__Produ__38996AB5" Association="BanHangModel.FK__ProductDe__Produ__38996AB5">
       <End Role="Product" EntitySet="Products" />
       <End Role="ProductDetail" EntitySet="ProductDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__Storage__Product__36B12243" Association="BanHangModel.FK__Storage__Product__36B12243">
+    <AssociationSet Name="FK__Storage__Product__398D8EEE" Association="BanHangModel.FK__Storage__Product__398D8EEE">
       <End Role="Product" EntitySet="Products" />
       <End Role="Storage" EntitySet="Storages" />
     </AssociationSet>
@@ -34,7 +34,7 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Catalog_Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Products" Relationship="BanHangModel.FK__Product__Catalog__2F10007B" FromRole="Catalog" ToRole="Product" />
+    <NavigationProperty Name="Products" Relationship="BanHangModel.FK__Product__Catalog__37A5467C" FromRole="Catalog" ToRole="Product" />
   </EntityType>
   <EntityType Name="Combo">
     <Key>
@@ -80,7 +80,7 @@
     <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="joinDate" Type="DateTime" Precision="0" />
     <Property Name="Role_ID" Type="Int32" />
-    <NavigationProperty Name="Role" Relationship="BanHangModel.FK__Employee__Role_I__2A4B4B5E" FromRole="Employee" ToRole="Role" />
+    <NavigationProperty Name="Role" Relationship="BanHangModel.FK__Employee__Role_I__36B12243" FromRole="Employee" ToRole="Role" />
   </EntityType>
   <EntityType Name="Invoice">
     <Key>
@@ -96,6 +96,17 @@
     <Property Name="shipDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Status" Type="Int32" />
   </EntityType>
+  <EntityType Name="InvoiceDetail">
+    <Key>
+      <PropertyRef Name="Invoice_ID" />
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Invoice_ID" Type="Int32" Nullable="false" />
+    <Property Name="Product_ID" Type="Int32" Nullable="false" />
+    <Property Name="Combo_ID" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+  </EntityType>
   <EntityType Name="Product">
     <Key>
       <PropertyRef Name="ID" />
@@ -107,9 +118,9 @@
     <Property Name="Price" Type="Int32" />
     <Property Name="Image_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Detail" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Catalog" Relationship="BanHangModel.FK__Product__Catalog__2F10007B" FromRole="Product" ToRole="Catalog" />
-    <NavigationProperty Name="ProductDetail" Relationship="BanHangModel.FK__ProductDe__Produ__31EC6D26" FromRole="Product" ToRole="ProductDetail" />
-    <NavigationProperty Name="Storage" Relationship="BanHangModel.FK__Storage__Product__36B12243" FromRole="Product" ToRole="Storage" />
+    <NavigationProperty Name="Catalog" Relationship="BanHangModel.FK__Product__Catalog__37A5467C" FromRole="Product" ToRole="Catalog" />
+    <NavigationProperty Name="ProductDetail" Relationship="BanHangModel.FK__ProductDe__Produ__38996AB5" FromRole="Product" ToRole="ProductDetail" />
+    <NavigationProperty Name="Storage" Relationship="BanHangModel.FK__Storage__Product__398D8EEE" FromRole="Product" ToRole="Storage" />
   </EntityType>
   <EntityType Name="ProductDetail">
     <Key>
@@ -117,7 +128,7 @@
     </Key>
     <Property Name="Product_ID" Type="Int32" Nullable="false" />
     <Property Name="Product_Detail" Type="String" MaxLength="650" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Product" Relationship="BanHangModel.FK__ProductDe__Produ__31EC6D26" FromRole="ProductDetail" ToRole="Product" />
+    <NavigationProperty Name="Product" Relationship="BanHangModel.FK__ProductDe__Produ__38996AB5" FromRole="ProductDetail" ToRole="Product" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -125,7 +136,7 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Role_Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Employees" Relationship="BanHangModel.FK__Employee__Role_I__2A4B4B5E" FromRole="Role" ToRole="Employee" />
+    <NavigationProperty Name="Employees" Relationship="BanHangModel.FK__Employee__Role_I__36B12243" FromRole="Role" ToRole="Employee" />
   </EntityType>
   <EntityType Name="Storage">
     <Key>
@@ -135,19 +146,9 @@
     <Property Name="Amount" Type="Int32" />
     <Property Name="importDate" Type="DateTime" Precision="0" />
     <Property Name="exportDate" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="Product" Relationship="BanHangModel.FK__Storage__Product__36B12243" FromRole="Storage" ToRole="Product" />
+    <NavigationProperty Name="Product" Relationship="BanHangModel.FK__Storage__Product__398D8EEE" FromRole="Storage" ToRole="Product" />
   </EntityType>
-  <EntityType Name="InvoiceDetail">
-    <Key>
-      <PropertyRef Name="Invoice_ID" />
-    </Key>
-    <Property Name="Invoice_ID" Type="Int32" Nullable="false" />
-    <Property Name="Product_ID" Type="Int32" />
-    <Property Name="Combo_ID" Type="Int32" />
-    <Property Name="Amount" Type="Int32" />
-    <Property Name="Price" Type="Int32" />
-  </EntityType>
-  <Association Name="FK__Product__Catalog__2F10007B">
+  <Association Name="FK__Product__Catalog__37A5467C">
     <End Type="BanHangModel.Catalog" Role="Catalog" Multiplicity="0..1" />
     <End Type="BanHangModel.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
@@ -159,7 +160,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Employee__Role_I__2A4B4B5E">
+  <Association Name="FK__Employee__Role_I__36B12243">
     <End Type="BanHangModel.Role" Role="Role" Multiplicity="0..1" />
     <End Type="BanHangModel.Employee" Role="Employee" Multiplicity="*" />
     <ReferentialConstraint>
@@ -171,7 +172,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ProductDe__Produ__31EC6D26">
+  <Association Name="FK__ProductDe__Produ__38996AB5">
     <End Type="BanHangModel.Product" Role="Product" Multiplicity="1" />
     <End Type="BanHangModel.ProductDetail" Role="ProductDetail" Multiplicity="0..1" />
     <ReferentialConstraint>
@@ -183,7 +184,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Storage__Product__36B12243">
+  <Association Name="FK__Storage__Product__398D8EEE">
     <End Type="BanHangModel.Product" Role="Product" Multiplicity="1" />
     <End Type="BanHangModel.Storage" Role="Storage" Multiplicity="0..1" />
     <ReferentialConstraint>

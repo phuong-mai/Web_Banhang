@@ -172,6 +172,8 @@
     <Compile Include="Models\InvoiceDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\alert.cs" />
+    <Compile Include="Models\ItemCombo.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>

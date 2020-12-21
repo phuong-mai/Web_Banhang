@@ -30,10 +30,10 @@ namespace Web_BanHang.Models
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductDetail> ProductDetails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Storage> Storages { get; set; }
-        public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
     }
 }

@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Web_BanHang.Models
 {
-    public class Item
+    public class ItemCombo
     {
-        public List<Product> Product
+        public List<Combo> Combo
         {
             get;
             set;

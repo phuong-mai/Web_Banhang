@@ -184,39 +184,357 @@ namespace Web_BanHang.Controllers
         }
          [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Buy(int id)
+        public ActionResult BuyCombo(int id)
         {
-            var products = db.Products.Where(s => s.ID.Equals(id)).ToList();
+            var combos = db.Comboes.Where(s => s.ID.Equals(id)).ToList();
 
-            if (Session["cart"] == null)
+            if (Session["combo"] == null)
             {
-                List<Item> cart = new List<Item>();
-                cart.Add(new Item { Product = products , Quantity = 1 });
-                Session["cart"] = cart;
+                if (Session["product"] == null)
+                {
+                    List<Product> product2 = new List<Product>();
+                    Session["product"] = product2;
+                }
+                List<ItemCombo> combo = new List<ItemCombo>();
+                List<Product> product = (List<Product>)Session["product"];
+                var accepted = true;
+                var abc = combos[0].Product_List;
+                List<string> results = abc.Split(';').ToList();
+
+                    
+                foreach (var result in results)
+                {
+                    var products = db.Products.Find(Int32.Parse(result));
+                    product.Add(products);
+
+                    if (product.Find(x => x.ID == Int32.Parse(result)) != null)
+                    {
+                        var amount = product.Find(x => x.ID == Int32.Parse(result)).Amount;
+                        if (amount <= 0)
+                        {
+                            accepted = false;
+                            alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == Int32.Parse(result)).Product_Name };
+                            Session["alert"] = alert;
+                            //combo[0].Stock = 0;
+                            return RedirectToAction("Cart");
+                        }
+                        else
+                        {
+                            product.Find(x => x.ID == Int32.Parse(result)).Amount--;
+                            Session["product"] = product;
+                        }
+                    }
+                    else
+                    {
+                        var amount = product.Find(x => x.ID == Int32.Parse(result)).Amount;
+                        if (amount <= 0)
+                        {
+                            accepted = false;
+                            alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == Int32.Parse(result)).Product_Name };
+                            Session["alert"] = alert;
+                            //combo[0].Stock = 0;
+                            return RedirectToAction("Cart");
+                        }
+                        else
+                        {
+                            product.Add(products);
+                            product.Find(x => x.ID == Int32.Parse(result)).Amount--;
+                            Session["product"] = product;
+                        }    
+                        
+                    }    
+                }
+
+                if (accepted)
+                {
+                    combo.Add(new ItemCombo { Combo = combos, Quantity = 1, Stock = 1 });
+                    Session["combo"] = combo;
+                }
+
+                
+
             }
             else
             {
-                List<Item> cart = (List<Item>)Session["cart"];
-                int index = isExist(id);
+                if (Session["product"] == null)
+                {
+                    List<Product> product2 = new List<Product>();
+                    Session["product"] = product2;
+                }
+                List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+                List<Product> product = (List<Product>)Session["product"];
+                int index = isExist2(id);
                 if (index != -1)
                 {
-                    cart[index].Quantity++;
+                    var abc = combo[index].Combo[0].Product_List;
+                    List<string> results = abc.Split(';').ToList();
+                    var accepted = true;
+                    foreach( var result in results)
+                    {
+                        var products = db.Products.Find(Int32.Parse(result));
+                        if (product.Find(x => x.ID == Int32.Parse(result)) != null)
+                        {
+                            var amount = product.Find(x => x.ID == Int32.Parse(result)).Amount;
+                            if (amount <= 0)
+                            {
+                                alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == Int32.Parse(result)).Product_Name };
+                                Session["alert"] = alert;
+                                accepted = false;
+                                //combo[index].Stock = 0;
+                                return RedirectToAction("Cart");
+                            }
+                            else
+                            {
+                                product.Find(x => x.ID == Int32.Parse(result)).Amount--;
+                                Session["product"] = product;
+                            }
+                        }
+                        else
+                        {
+                            product.Add(products);
+                            var amount = product.Find(x => x.ID == Int32.Parse(result)).Amount;
+                            if (amount <= 0)
+                            {
+                                alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == Int32.Parse(result)).Product_Name };
+                                Session["alert"] = alert;
+                                accepted = false;
+                                //combo[index].Stock = 0;
+                                return RedirectToAction("Cart");
+                            }
+                            else
+                            {
+                                product.Find(x => x.ID == Int32.Parse(result)).Amount--;
+                                Session["product"] = product;
+                            }
+                        }    
+                       
+
+                    }
+
+                    if (accepted)
+                    {
+                        combo[index].Quantity++;
+                        Session["combo"] = combo;
+                        //cart.Add(new Item { Product = products, Quantity = 1 });
+                        //Session["cart"] = cart;
+                        //return RedirectToAction("Cart");
+                        //db.Products.Find(id).Amount = db.Products.Find(id).Amount - 1;
+                        //db.SaveChanges();
+                    }
                 }
                 else
                 {
-                    cart.Add(new Item { Product = products, Quantity = 1 });
+                    var abc = combos[0].Product_List;
+                    List<string> results = abc.Split(';').ToList();
+                    var accepted = true;
+                    foreach (var result in results)
+                    {
+                        var products = db.Products.Find(Int32.Parse(result));
+                        if (product.Find(x => x.ID == Int32.Parse(result)) != null)
+                        {
+                            var amount = product.Find(x => x.ID == Int32.Parse(result)).Amount;
+                            if (amount <= 0)
+                            {
+                                alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == Int32.Parse(result)).Product_Name };
+                                Session["alert"] = alert;
+                                accepted = false;
+                                //combo[0].Stock = 0;
+                                return RedirectToAction("Cart");
+                            }
+                            else
+                            {
+                                product.Find(x => x.ID == Int32.Parse(result)).Amount--;
+                                Session["product"] = product;
+                            }
+                        }
+                        else
+                        {
+                            product.Add(products);
+                            product.Find(x => x.ID == Int32.Parse(result)).Amount--;
+                            Session["product"] = product;
+                        }
+                    }
+                    if (accepted)
+                        {   
+                            combo.Add(new ItemCombo { Combo = combos, Quantity = 1, Stock = 1 });
+                            Session["combo"] = combo;
+                        }    
+                       
                 }
-                Session["cart"] = cart;
+               
             }
+            return RedirectToAction("Cart");
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Buy(int id)
+        {
+            var products = db.Products.Where(s => s.ID.Equals(id)).ToList();
+            if(Session["product"] == null)
+            {
+                if (Session["cart"] == null)
+                {
+                    List<Product> product = new List<Product>();
+                    List<Item> cart = new List<Item>();
+                    cart.Add(new Item { Product = products, Quantity = 1, Stock = 1 });
+                    product.Add(products[0]);
+                    product.Find(x => x.ID == id).Amount--;
+                    Session["cart"] = cart;
+                    Session["product"] = product;
+                }
+                else
+                {
+                    List<Item> cart = (List<Item>)Session["cart"];
+                    List<Product> product = (List<Product>)Session["product"];
+
+                    int index = isExist(id);
+                    if (index != -1)
+                    {
+                        if (product.Find(x => x.ID == id).Amount <= 0)
+                        {
+                            //cart[index].Stock = 0;
+                            alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == id).Product_Name };
+                            Session["alert"] = alert;
+                            Session["cart"] = cart;
+                            return RedirectToAction("Cart");
+                        }
+                        else
+                        {
+                            cart[index].Quantity++;
+                            product.Find(x => x.ID == id).Amount--;
+                            Session["product"] = product;
+                            //cart.Add(new Item { Product = products, Quantity = 1 });
+                            //Session["cart"] = cart;
+                            //return RedirectToAction("Cart");
+                            //db.Products.Find(id).Amount = db.Products.Find(id).Amount - 1;
+                            //db.SaveChanges();
+                        }
+
+                    }
+                    else
+                    {
+                        product.Add(products[0]);
+                        product.Find(x => x.ID == id).Amount--;
+                        Session["product"] = product;
+                        cart.Add(new Item { Product = products, Quantity = 1, Stock = 1 });
+                    }
+                    Session["cart"] = cart;
+                }
+            }
+            else
+            {
+                if (Session["cart"] == null)
+                {
+                    List<Product> product = (List<Product>)Session["product"];
+                    if (product.Find(x => x.ID == id).Amount > 0)
+                    {
+                        List<Item> cart = new List<Item>();
+                        cart.Add(new Item { Product = products, Quantity = 1, Stock = 1 });
+                        product.Find(x => x.ID == id).Amount--;
+                        Session["product"] = product;
+                        Session["cart"] = cart;
+                    }
+                    else
+                    {
+                        alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == id).Product_Name };
+                        Session["alert"] = alert;
+                        return RedirectToAction("Cart");
+                    }    
+
+                }
+                else
+                {
+                    List<Item> cart = (List<Item>)Session["cart"];
+                    List<Product> product2 = (List<Product>)Session["product"];
+                    if(product2.Find(x => x.ID == id) == null)
+                    {
+                        product2.Add(products[0]);
+                    }
+                    Session["product"] = product2;
+
+                    List<Product> product = (List<Product>)Session["product"];
+                    if (product.Find(x => x.ID == id).Amount > 0)
+                    {
+                        int index = isExist(id);
+                        if (index != -1)
+                        {
+                            if (product.Find(x => x.ID == id).Amount <= 0)
+                            {
+                                //cart[index].Stock = 0;
+                                alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == id).Product_Name };
+                                Session["alert"] = alert;
+                                Session["cart"] = cart;
+                                return RedirectToAction("Cart");
+                            }
+                            else
+                            {
+                                cart[index].Quantity++;
+                                product.Find(x => x.ID == id).Amount--;
+                                Session["product"] = product;
+                                //cart.Add(new Item { Product = products, Quantity = 1 });
+                                //Session["cart"] = cart;
+                                //return RedirectToAction("Cart");
+                                //db.Products.Find(id).Amount = db.Products.Find(id).Amount - 1;
+                                //db.SaveChanges();
+                            }
+
+                        }
+                        else
+                        {
+                            product.Add(products[0]);
+                            product.Find(x => x.ID == id).Amount--;
+                            Session["product"] = product;
+                            cart.Add(new Item { Product = products, Quantity = 1, Stock = 1 });
+                        }
+                        Session["cart"] = cart;
+                    }
+                    else
+                    {
+                        alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == id).Product_Name };
+                        Session["alert"] = alert;
+                        return RedirectToAction("Cart");
+                    }
+
+                }
+            }    
+
+           
             return RedirectToAction("Cart");
 
         }
         public ActionResult Remove(int id)
         {
+            Session.Remove("alert");
             List<Item> cart = (List<Item>)Session["cart"];
             int index = isExist(id);
+            List<Product> product = (List<Product>)Session["product"];
+            product.Find(x => x.ID == id).Amount = product.Find(x => x.ID == id).Amount + cart[index].Quantity;
             cart.RemoveAt(index);
             Session["cart"] = cart;
+            Session["product"] = product;
+            return RedirectToAction("Cart");
+        }
+
+        public ActionResult Remove2(int id)
+        {
+            Session.Remove("alert");
+            List<ItemCombo> combos = (List<ItemCombo>)Session["combo"];
+            int index = isExist2(id);
+            List<Product> product = (List<Product>)Session["product"];
+
+            var abc = db.Comboes.Find(id).Product_List;
+            List<string> results = abc.Split(';').ToList();
+
+            foreach (var result in results)
+            {
+                product.Find(x => x.ID == Int32.Parse(result)).Amount = product.Find(x => x.ID == Int32.Parse(result)).Amount + combos[index].Quantity;
+            }
+            Session["product"] = product;
+            combos.RemoveAt(index);
+            Session["combo"] = combos;
+            
             return RedirectToAction("Cart");
         }
 
@@ -228,34 +546,89 @@ namespace Web_BanHang.Controllers
                     return i;
             return -1;
         }
+        private int isExist2(int id)
+        {
+            List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+            for (int i = 0; i < combo.Count; i++)
+                if (combo[i].Combo[0].ID.Equals(id))
+                    return i;
+            return -1;
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddToInvoice(int id)
+        public ActionResult AddToInvoice(Invoice invoice)
         {
-            var products = db.Products.Where(s => s.ID.Equals(id)).ToList();
-
-            if (Session["cart"] == null)
-            {
-                List<Item> cart = new List<Item>();
-                cart.Add(new Item { Product = products, Quantity = 1 });
-                Session["cart"] = cart;
-            }
-            else
+            var total = 0;
+            if(Session["cart"] != null && Session["combo"] != null)
             {
                 List<Item> cart = (List<Item>)Session["cart"];
-                int index = isExist(id);
-                if (index != -1)
-                {
-                    cart[index].Quantity++;
-                }
-                else
-                {
-                    cart.Add(new Item { Product = products, Quantity = 1 });
-                }
-                Session["cart"] = cart;
+                var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
+                List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+                var total2 = combo.Sum(item => item.Combo[0].totalMoney * item.Quantity);
+                total = (Int32)total1 + (Int32)total2;
             }
-            return RedirectToAction("Index");
+            if (Session["cart"] != null )
+            {
+                List<Item> cart = (List<Item>)Session["cart"];
+                var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
+                total = (Int32)total1;
+            }
+            if (Session["combo"] != null)
+            {
+                List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+                var total2 = combo.Sum(item => item.Combo[0].totalMoney * item.Quantity);
+                total = (Int32)total2;
+            }
 
+            var newID = db.Invoices.OrderByDescending(p => p.ID)
+                            .Select(r => r.ID)
+                            .First();
+
+
+            db.Invoices.Add(new Invoice
+            {
+                ID = newID + 1,
+                Customer_ID = (Int32)Session["ID"],
+                totalMoney = total,
+                customerAddress = invoice.customerAddress
+
+            }) ;
+            db.SaveChanges();
+
+            if(Session["cart"] != null)
+            {
+                foreach (var item in (List<Item>)Session["cart"])
+                {
+                    db.InvoiceDetails.Add(new InvoiceDetail { Product_ID = item.Product[0].ID, Invoice_ID = newID + 1, Amount = item.Quantity, Price = item.Product[0].Price * item.Quantity });
+                    db.Products.Find(item.Product[0].ID).Amount = db.Products.Find(item.Product[0].ID).Amount - item.Quantity;
+                    db.SaveChanges();
+                    Session["cart"] = null;
+                }
+            }
+            
+            if(Session["combo"] != null)
+            {
+                foreach (var item in (List<ItemCombo>)Session["combo"])
+                {
+                    db.InvoiceDetails.Add(new InvoiceDetail { Combo_ID = item.Combo[0].ID, Invoice_ID = newID + 1, Amount = item.Quantity, Price = item.Combo[0].totalMoney * item.Quantity });
+                    var abc = db.Comboes.Find(item.Combo[0].ID).Product_List;
+                    List<string> results = abc.Split(';').ToList();
+
+                    foreach (var result in results)
+                    {
+                        db.Products.Find(Int32.Parse(result)).Amount = db.Products.Find(Int32.Parse(result)).Amount - item.Quantity;
+                    }
+                    db.SaveChanges();
+                    Session["combo"] = null;
+                }
+            }    
+
+            
+
+            
+
+            return RedirectToAction("Index");
         }
 
     }

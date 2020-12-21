@@ -1,4 +1,5 @@
 ﻿@using Web_BanHang.Models;
+@model Web_BanHang.Models.Invoice
 @{
     ViewBag.Title = "Checkout";
 }
@@ -21,116 +22,200 @@
 <!-- End Breadcrumbs -->
 <!-- Start Checkout -->
 <section class="shop checkout section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-12">
-                <div class="checkout-form">
-                    <h2>Make Your Checkout Here</h2>
-                    <p>Please register in order to checkout more quickly</p>
-                    <!-- Form -->
-                    <form class="form" method="post" action="#">
-                        <div class="row">
+    @using (Html.BeginForm("AddToInvoice", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-12">
+                    <div class="checkout-form">
+                        <h2>Make Your Checkout Here</h2>
+                        <p>Please register in order to checkout more quickly</p>
+                        <!-- Form -->
+                        <form class="form" method="post" action="#">
+                            <div class="row">
 
 
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <div class="form-group">
-                                    <label>Address Line 1<span>*</span></label>
-                                    <input type="text" name="address" placeholder="" required="required">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Address Line 1<span>*</span></label>
+                                        @*<input type="text" name="address" placeholder="" required="required">*@
+                                        @Html.EditorFor(model => model.customerAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.customerAddress, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
+                                @*<div class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label>Ship Date<span>*</span></label>
+                                            <input type="date" name="ship_date" placeholder="" required="required">
+                                        </div>
+                                    </div>*@
+
+
+
                             </div>
-                            @*<div class="col-lg-6 col-md-6 col-12">
-                                <div class="form-group">
-                                    <label>Ship Date<span>*</span></label>
-                                    <input type="date" name="ship_date" placeholder="" required="required">
+                        </form>
+                        <!--/ End Form -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="order-details">
+                        <!-- Order Widget -->
+                        <div class="single-widget">
+                            <h2>CART  TOTALS</h2>
+                            <div class="content">
+                                <ul>
+                                    @if (Session["cart"] != null && Session["combo"] != null)
+                                    {
+                                        <li>
+                                            Tổng tiền<span>
+                                                @{
+                                                    List<Item> cart = (List<Item>)Session["cart"];
+                                                    var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
+                                                    List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+                                                    var total2 = combo.Sum(item => item.Combo[0].totalMoney * item.Quantity);
+                                                    var total = total1 + total2;
+                                                }
+
+                                                @String.Format("{0:0,0} đ", @total)
+                                            </span>
+                                        </li>
+                                    }
+                                    else if (Session["cart"] != null)
+                                    {
+                                        <li>
+                                            Tổng tiền<span>
+                                                @{
+                                                    List<Item> cart = (List<Item>)Session["cart"];
+                                                    var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
+
+                                                    var total = total1;
+                                                }
+
+                                                @String.Format("{0:0,0} đ", @total)
+                                            </span>
+                                        </li>
+
+                                    }
+                                    else if (Session["cart"] != null)
+                                    {
+                                        <li>
+                                            Tổng tiền<span>
+                                                @{
+                                                    List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+                                                    var total2 = combo.Sum(item => item.Combo[0].totalMoney * item.Quantity);
+
+                                                    var total = total2;
+                                                }
+
+                                                @String.Format("{0:0,0} đ", @total)
+                                            </span>
+                                        </li>
+
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            Tổng tiền<span>
+                                                0
+                                            </span>
+                                        </li>
+                                    }
+
+                                    @*<li>(+) Shipping<span>$10.00</span></li>*@
+                                    @if (Session["cart"] != null && Session["combo"] != null)
+                                    {
+                                        <li class="last">
+                                            Tổng tiền<span>
+                                                @{
+                                                    List<Item> cart = (List<Item>)Session["cart"];
+                                                    var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
+                                                    List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+                                                    var total2 = combo.Sum(item => item.Combo[0].totalMoney * item.Quantity);
+                                                    var total = total1 + total2;
+                                                }
+
+                                                @String.Format("{0:0,0} đ", @total)
+                                            </span>
+                                        </li>
+                                    }
+                                    else if (Session["cart"] != null)
+                                    {
+                                        <li class="last">
+                                            Tổng tiền<span>
+                                                @{
+                                                    List<Item> cart = (List<Item>)Session["cart"];
+                                                    var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
+
+                                                    var total = total1;
+                                                }
+
+                                                @String.Format("{0:0,0} đ", @total)
+                                            </span>
+                                        </li>
+
+                                    }
+                                    else if (Session["cart"] != null)
+                                    {
+                                        <li class="last">
+                                            Tổng tiền<span>
+                                                @{
+                                                    List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+                                                    var total2 = combo.Sum(item => item.Combo[0].totalMoney * item.Quantity);
+
+                                                    var total = total2;
+                                                }
+
+                                                @String.Format("{0:0,0} đ", @total)
+                                            </span>
+                                        </li>
+
+                                    }
+                                    else
+                                    {
+                                        <li class="last">
+                                            Tổng tiền<span>
+                                                0
+                                            </span>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/ End Order Widget -->
+                        <!-- Order Widget -->
+                        @*<div class="single-widget">
+                                <h2>Payments</h2>
+                                <div class="content">
+                                    <div class="checkbox">
+                                        <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label>
+                                        <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Cash On Delivery</label>
+                                        <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox"> PayPal</label>
+                                    </div>
                                 </div>
                             </div>*@
-
-
-
-                        </div>
-                    </form>
-                    <!--/ End Form -->
-                </div>
-            </div>
-            <div class="col-lg-4 col-12">
-                <div class="order-details">
-                    <!-- Order Widget -->
-                    <div class="single-widget">
-                        <h2>CART  TOTALS</h2>
-                        <div class="content">
-                            <ul>
-                                @if (Session["cart"] != null)
-                                {
-                                    <li>
-                                        Sub Total<span>
-                                            @{List<Item> cart = (List<Item>)Session["cart"];
-                                                var total = cart.Sum(item => item.Product[0].Price * item.Quantity);
-                                            }
-                                            @String.Format("{0:0,0} đ", total)
-                                        </span>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li>Sub Total<span>0 đ</span></li>
-}
-
-                                @*<li>(+) Shipping<span>$10.00</span></li>*@
-                                @if (Session["cart"] != null)
-                                {
-                                    <li class="last">
-                                        Total<span>
-                                            @{List<Item> cart = (List<Item>)Session["cart"];
-                                                var total = cart.Sum(item => item.Product[0].Price * item.Quantity);
-                                            }
-                                            @String.Format("{0:0,0} đ", total)
-                                        </span>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li class="last">Total<span>0 đ</span></li>
-}
-                            </ul>
-                        </div>
-                    </div>
-                    <!--/ End Order Widget -->
-                    <!-- Order Widget -->
-                    @*<div class="single-widget">
-                        <h2>Payments</h2>
-                        <div class="content">
-                            <div class="checkbox">
-                                <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label>
-                                <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Cash On Delivery</label>
-                                <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox"> PayPal</label>
-                            </div>
-                        </div>
-                    </div>*@
-                    <!--/ End Order Widget -->
-                    <!-- Payment Method Widget -->
-                    @*<div class="single-widget payement">
-                        <div class="content">
-                            <img src="images\payment-method.png" alt="#">
-                        </div>
-                    </div>*@
-                    <!--/ End Payment Method Widget -->
-                    <!-- Button Widget -->
-                    <div class="single-widget get-button">
-                        <div class="content">
-                            <div class="button">
-                                @using (Html.BeginForm("Buy", "Home", new { id = item.ID }, FormMethod.Post))
-                                {
-                                    @Html.AntiForgeryToken()
+                        <!--/ End Order Widget -->
+                        <!-- Payment Method Widget -->
+                        @*<div class="single-widget payement">
+                                <div class="content">
+                                    <img src="images\payment-method.png" alt="#">
+                                </div>
+                            </div>*@
+                        <!--/ End Payment Method Widget -->
+                        <!-- Button Widget -->
+                        <div class="single-widget get-button">
+                            <div class="content">
+                                <div class="button">
                                     <button class="ml-5" type="submit">Hoàn tất thanh toán</button>
-                                }
-                                <a href="#" class="btn">proceed to checkout</a>
+                                    <a href="#" class="btn">proceed to checkout</a>
+                                </div>
                             </div>
                         </div>
+                        <!--/ End Button Widget -->
                     </div>
-                    <!--/ End Button Widget -->
                 </div>
             </div>
         </div>
-    </div>
+    }
 </section>
 <!--/ End Checkout -->

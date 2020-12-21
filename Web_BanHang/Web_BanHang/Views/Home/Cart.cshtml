@@ -20,8 +20,16 @@
 </div>
 <!-- End Breadcrumbs -->
 <!-- Shopping Cart -->
+
 <div class="shopping-cart section">
+   
     <div class="container">
+        @if (Session["alert"] != null)
+        {
+            alert a = (alert)Session["alert"];
+           <p class="alert-danger p-2">Sản phẩm @a.Name hết hàng!!!!</p>
+        }
+
         <div class="row">
             <div class="col-12">
                 <!-- Shopping Summery -->
@@ -37,7 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (Session["cart"] != null)
+                        @if (Session["cart"] != null && Session["combo"] != null)
                         {
                             foreach (var item in (List<Item>)Session["cart"])
                             {
@@ -48,22 +56,147 @@
                                     <td class="product-des" data-title="Description">
                                         <p class="product-name"><a href="#">@item.Product[0].Product_Name</a></p>
                                         <p class="product-des">@item.Product[0].Detail</p>
+                                        @if (item.Stock == 0)
+                                        {
+                                            <p class="text-danger">Trong kho không còn sản phẩm bạn cần</p>
+                                        }
                                     </td>
                                     <td class="price" data-title="Price"><span>@String.Format("{0:0,0} đ", item.Product[0].Price)</span></td>
                                     <td class="qty" data-title="Qty">
                                         <!-- Input Order -->
                                         <div class="input-group">
                                             @*<div class="button minus">
-                                                    <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[@item.Product[0].Product_Name]">
-                                                        <i class="ti-minus"></i>
-                                                    </button>
-                                                </div>*@
+                                                <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[@item.Product[0].Product_Name]">
+                                                    <i class="ti-minus"></i>
+                                                </button>
+                                            </div>*@
                                             <input readonly type="text" name="quant[@item.Product[0].Product_Name]" class="input-number" data-min="1" data-max="100" value="@item.Quantity">
                                             @*<div class="button plus">
-                                                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[@item.Product[0].Product_Name]">
-                                                        <i class="ti-plus"></i>
-                                                    </button>
-                                                </div>*@
+                                                <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[@item.Product[0].Product_Name]">
+                                                    <i class="ti-plus"></i>
+                                                </button>
+                                            </div>*@
+                                        </div>
+                                        <!--/ End Input Order -->
+                                    </td>
+                                    <td class="total-amount" data-title="Total"><span>@String.Format("{0:0,0} đ", item.Product[0].Price * item.Quantity)</span></td>
+                                    <td class="action" data-title="Remove"><a href="@Url.Action("Remove", "Home", new { id = item.Product[0].ID })"><i class="ti-trash remove-icon"></i></a></td>
+                                    @*<a href="#"><i class="ti-trash remove-icon"></i></a>*@
+
+                                </tr>
+                            }
+                            foreach (var item in (List<ItemCombo>)Session["combo"])
+                            {
+
+                                <tr>
+
+                                    <td class="image" data-title="No"><img src="@Url.Content("/Content/images/products/" + item.Combo[0].Image_Combo)" alt="#"></td>
+                                    <td class="product-des" data-title="Description">
+                                        <p class="product-name"><a href="#">@item.Combo[0].Combo_Name</a></p>
+                                        <p class="product-des">@item.Combo[0].Combo_Name</p>
+                                        @if (item.Stock == 0)
+                                        {
+                                            <p class="text-danger">Trong kho không còn sản phẩm bạn cần</p>
+                                        }
+                                    </td>
+                                    <td class="price" data-title="Price"><span>@String.Format("{0:0,0} đ", item.Combo[0].totalMoney)</span></td>
+                                    <td class="qty" data-title="Qty">
+                                        <!-- Input Order -->
+                                        <div class="input-group">
+                                            @*<div class="button minus">
+                                                <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[@item.Product[0].Product_Name]">
+                                                    <i class="ti-minus"></i>
+                                                </button>
+                                            </div>*@
+                                            <input readonly type="text" name="quant[@item.Combo[0].Combo_Name]" class="input-number" data-min="1" data-max="100" value="@item.Quantity">
+                                            @*<div class="button plus">
+                                                <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[@item.Product[0].Product_Name]">
+                                                    <i class="ti-plus"></i>
+                                                </button>
+                                            </div>*@
+                                        </div>
+                                        <!--/ End Input Order -->
+                                    </td>
+                                    <td class="total-amount" data-title="Total"><span>@String.Format("{0:0,0} đ", item.Combo[0].totalMoney * item.Quantity)</span></td>
+                                    <td class="action" data-title="Remove"><a href="@Url.Action("Remove2", "Home", new { id = item.Combo[0].ID })"><i class="ti-trash remove-icon"></i></a></td>
+                                    @*<a href="#"><i class="ti-trash remove-icon"></i></a>*@
+
+                                </tr>
+                            }
+                        }
+
+                        else if (Session["combo"] != null)
+                        {
+                            foreach (var item in (List<ItemCombo>)Session["combo"])
+                            {
+
+                                <tr>
+
+                                    <td class="image" data-title="No"><img src="@Url.Content("/Content/images/products/" + item.Combo[0].Image_Combo)" alt="#"></td>
+                                    <td class="product-des" data-title="Description">
+                                        <p class="product-name"><a href="#">@item.Combo[0].Combo_Name</a></p>
+                                        <p class="product-des">@item.Combo[0].Combo_Name</p>
+                                        @if (item.Stock == 0)
+                                        {
+                                            <p class="text-danger">Trong kho không còn sản phẩm bạn cần</p>
+                                        }
+                                    </td>
+                                    <td class="price" data-title="Price"><span>@String.Format("{0:0,0} đ", item.Combo[0].totalMoney)</span></td>
+                                    <td class="qty" data-title="Qty">
+                                        <!-- Input Order -->
+                                        <div class="input-group">
+                                            @*<div class="button minus">
+                                                <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[@item.Product[0].Product_Name]">
+                                                    <i class="ti-minus"></i>
+                                                </button>
+                                            </div>*@
+                                            <input readonly type="text" name="quant[@item.Combo[0].Combo_Name]" class="input-number" data-min="1" data-max="100" value="@item.Quantity">
+                                            @*<div class="button plus">
+                                                <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[@item.Product[0].Product_Name]">
+                                                    <i class="ti-plus"></i>
+                                                </button>
+                                            </div>*@
+                                        </div>
+                                        <!--/ End Input Order -->
+                                    </td>
+                                    <td class="total-amount" data-title="Total"><span>@String.Format("{0:0,0} đ", item.Combo[0].totalMoney * item.Quantity)</span></td>
+                                    <td class="action" data-title="Remove"><a href="@Url.Action("Remove2", "Home", new { id = item.Combo[0].ID })"><i class="ti-trash remove-icon"></i></a></td>
+                                    @*<a href="#"><i class="ti-trash remove-icon"></i></a>*@
+
+                                </tr>
+                            }
+                        }
+                        else if (Session["cart"] != null)
+                        {
+                            foreach (var item in (List<Item>)Session["cart"])
+                            {
+
+                                <tr>
+
+                                    <td class="image" data-title="No"><img src="@Url.Content("/Content/images/products/" + item.Product[0].Image_Name)" alt="#"></td>
+                                    <td class="product-des" data-title="Description">
+                                        <p class="product-name"><a href="#">@item.Product[0].Product_Name</a></p>
+                                        <p class="product-des">@item.Product[0].Detail</p>
+                                        @if (item.Stock == 0)
+                                        {
+                                            <p class="text-danger">Trong kho không còn sản phẩm bạn cần</p>
+                                        }
+                                    </td>
+                                    <td class="price" data-title="Price"><span>@String.Format("{0:0,0} đ", item.Product[0].Price)</span></td>
+                                    <td class="qty" data-title="Qty">
+                                        <!-- Input Order -->
+                                        <div class="input-group">
+                                            @*<div class="button minus">
+                                                <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[@item.Product[0].Product_Name]">
+                                                    <i class="ti-minus"></i>
+                                                </button>
+                                            </div>*@
+                                            <input readonly type="text" name="quant[@item.Product[0].Product_Name]" class="input-number" data-min="1" data-max="100" value="@item.Quantity">
+                                            @*<div class="button plus">
+                                                <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[@item.Product[0].Product_Name]">
+                                                    <i class="ti-plus"></i>
+                                                </button>
+                                            </div>*@
                                         </div>
                                         <!--/ End Input Order -->
                                     </td>
@@ -74,10 +207,12 @@
                                 </tr>
                             }
                         }
+
                         else
                         {
                             <tr><td> Giỏ hàng rỗng</td></tr>
                         }
+
 
                     </tbody>
                 </table>
@@ -95,18 +230,53 @@
                         <div class="col-lg-4 col-md-7 col-12">
                             <div class="right">
                                 <ul>
-                                    @if (Session["cart"] != null)
+                                    @if (Session["cart"] != null && Session["combo"] != null)
                                     {
                                         <li>
                                             Tổng tiền<span>
                                                 @{
                                                     List<Item> cart = (List<Item>)Session["cart"];
-                                                    var total = cart.Sum(item => item.Product[0].Price * item.Quantity);
+                                                    var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
+                                                    List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+                                                    var total2 = combo.Sum(item => item.Combo[0].totalMoney * item.Quantity);
+                                                    var total = total1 + total2;
                                                 }
 
                                                 @String.Format("{0:0,0} đ", @total)
                                             </span>
                                         </li>
+                                    }
+                                    else if (Session["cart"] != null)
+                                    {
+                                        <li>
+                                            Tổng tiền<span>
+                                                @{
+                                                    List<Item> cart = (List<Item>)Session["cart"];
+                                                    var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
+
+                                                    var total = total1;
+                                                }
+
+                                                @String.Format("{0:0,0} đ", @total)
+                                            </span>
+                                        </li>
+
+                                    }
+                                    else if (Session["cart"] != null)
+                                    {
+                                        <li>
+                                            Tổng tiền<span>
+                                                @{
+                                                    List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
+                                                    var total2 = combo.Sum(item => item.Combo[0].totalMoney * item.Quantity);
+
+                                                    var total = total2;
+                                                }
+
+                                                @String.Format("{0:0,0} đ", @total)
+                                            </span>
+                                        </li>
+
                                     }
                                     else
                                     {
@@ -118,7 +288,7 @@
                                     }
                                 </ul>
                                 <div class="button5">
-                                    <a href="@Url.Action("Checkout","Home")" class="btn">Thanh Toán</a>                                
+                                    <a href="@Url.Action("Checkout","Home")" class="btn">Thanh Toán</a>
                                 </div>
                             </div>
                         </div>

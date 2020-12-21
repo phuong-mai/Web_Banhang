@@ -29,7 +29,7 @@
                                                     <a href="@(Url.Action("DetailCombo", "", new { id = item.ID }))">
                                                         <img class="default-img" src=@Url.Content("/Content/images/products/" + item.Image_Combo) alt="#">
                                                     </a>
-                                                    @using (Html.BeginForm("Buy", "Home", new { id = item.ID }, FormMethod.Post))
+                                                    @using (Html.BeginForm("BuyCombo", "Home", new { id = item.ID }, FormMethod.Post))
                                                     {
                                                         @Html.AntiForgeryToken()
                                                         @*<button class="ml-5" type="submit">Thêm vô giỏ hàng</button>*@

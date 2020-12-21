@@ -72,6 +72,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceDetails">
+      <EntityTypeMapping TypeName="BanHangModel.InvoiceDetail">
+        <MappingFragment StoreEntitySet="InvoiceDetail">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Combo_ID" ColumnName="Combo_ID" />
+          <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+          <ScalarProperty Name="Invoice_ID" ColumnName="Invoice_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="BanHangModel.Product">
         <MappingFragment StoreEntitySet="Product">
@@ -108,17 +119,6 @@
           <ScalarProperty Name="importDate" ColumnName="importDate" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="InvoiceDetails">
-      <EntityTypeMapping TypeName="BanHangModel.InvoiceDetail">
-        <MappingFragment StoreEntitySet="InvoiceDetail">
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="Combo_ID" ColumnName="Combo_ID" />
-          <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
-          <ScalarProperty Name="Invoice_ID" ColumnName="Invoice_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
