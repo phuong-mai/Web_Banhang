@@ -380,9 +380,19 @@ namespace Web_BanHang.Controllers
                     List<Item> cart = new List<Item>();
                     cart.Add(new Item { Product = products, Quantity = 1, Stock = 1 });
                     product.Add(products[0]);
-                    product.Find(x => x.ID == id).Amount--;
-                    Session["cart"] = cart;
-                    Session["product"] = product;
+                    if (product.Find(x => x.ID == id).Amount > 0)
+                    {
+                        cart.Add(new Item { Product = products, Quantity = 1, Stock = 1 });
+                        product.Find(x => x.ID == id).Amount--;
+                        Session["product"] = product;
+                        Session["cart"] = cart;
+                    }
+                    else
+                    {
+                        alert alert = new alert { Alert = "", Name = product.Find(x => x.ID == id).Product_Name };
+                        Session["alert"] = alert;
+                        return RedirectToAction("Cart");
+                    }
                 }
                 else
                 {
