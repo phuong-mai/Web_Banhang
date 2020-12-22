@@ -39,9 +39,13 @@
                     <h5 class="pb-4">@Html.DisplayFor(model => model.Combo_Name)</h5>
                     <p class="pb-4">@Html.DisplayFor(model => model.totalMoney)</p>
                     <p class="pb-4"></p>
-                    <div class="row">
-                        <button type="submit" class="btn col-lg-6 col-6">Thêm vào giỏ hàng</button>
-                    </div>
+                    @using (Html.BeginForm("BuyCombo", "Home", new { id = @Html.DisplayFor(model => model.ID) }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <button type="submit" class="btn col-lg-6 col-6">Thêm vào giỏ hàng</button>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="blog-single.html">Checkout</a></li>
+                        <li><a href="index1.html">Trang chủ<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="blog-single.html">Thanh toán</a></li>
                     </ul>
                 </div>
             </div>
@@ -29,8 +29,8 @@
             <div class="row">
                 <div class="col-lg-8 col-12">
                     <div class="checkout-form">
-                        <h2>Make Your Checkout Here</h2>
-                        <p>Please register in order to checkout more quickly</p>
+                        <h2>Thanh toán giỏ hàng của bạn tại đây</h2>
+                        <p>Hãy điền địa chỉ giao hàng của bạn</p>
                         <!-- Form -->
                         <form class="form" method="post" action="#">
                             <div class="row">
@@ -38,7 +38,7 @@
 
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
-                                        <label>Address Line 1<span>*</span></label>
+                                        <label>Địa chỉ giao hàng</label>
                                         @*<input type="text" name="address" placeholder="" required="required">*@
                                         @Html.EditorFor(model => model.customerAddress, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.customerAddress, "", new { @class = "text-danger" })
@@ -62,13 +62,13 @@
                     <div class="order-details">
                         <!-- Order Widget -->
                         <div class="single-widget">
-                            <h2>CART  TOTALS</h2>
+                            <h2>TỔNG TIỀN</h2>
                             <div class="content">
                                 <ul>
                                     @if (Session["cart"] != null && Session["combo"] != null)
                                     {
                                         <li>
-                                            Tổng tiền<span>
+                                            Tạm tính<span>
                                                 @{
                                                     List<Item> cart = (List<Item>)Session["cart"];
                                                     var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
@@ -84,7 +84,7 @@
                                     else if (Session["cart"] != null)
                                     {
                                         <li>
-                                            Tổng tiền<span>
+                                            Tạm tính<span>
                                                 @{
                                                     List<Item> cart = (List<Item>)Session["cart"];
                                                     var total1 = cart.Sum(item => item.Product[0].Price * item.Quantity);
@@ -100,7 +100,7 @@
                                     else if (Session["cart"] != null)
                                     {
                                         <li>
-                                            Tổng tiền<span>
+                                            Tạm tính<span>
                                                 @{
                                                     List<ItemCombo> combo = (List<ItemCombo>)Session["combo"];
                                                     var total2 = combo.Sum(item => item.Combo[0].totalMoney * item.Quantity);
@@ -116,7 +116,7 @@
                                     else
                                     {
                                         <li>
-                                            Tổng tiền<span>
+                                           Tạm tính<span>
                                                 0
                                             </span>
                                         </li>
@@ -206,8 +206,8 @@
                         <div class="single-widget get-button">
                             <div class="content">
                                 <div class="button">
-                                    <button class="ml-5" type="submit">Hoàn tất thanh toán</button>
-                                    <a href="#" class="btn">proceed to checkout</a>
+                                    <button class="btn" type="submit">Hoàn tất thanh toán</button>
+                                   
                                 </div>
                             </div>
                         </div>

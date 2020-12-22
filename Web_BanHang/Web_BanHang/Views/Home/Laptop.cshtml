@@ -34,16 +34,16 @@
                                                         @Html.AntiForgeryToken()
                                                         @*<button class="ml-5" type="submit">Thêm vô giỏ hàng</button>*@
                                                         <button type="submit" class="button-head">
-                                                            <div class="product-action-2 align-content-center">
+                                                            
                                                                 Thêm vào giỏ hàng
-                                                            </div>
+                                                            
                                                         </button>
                                                     }
                                                 </div>
                                                 <div class="product-content">
                                                     <h3><a href="@(Url.Action("Detail", "", new { id = item.ID }))">@Html.DisplayFor(modelItem => item.Product_Name)</a></h3>
                                                     <div class="product-price">
-                                                        <span>@Html.DisplayFor(modelItem => item.Price)</span>
+                                                        <span> @String.Format("{0:0,0} đ", item.Price)</span>
                                                     </div>
                                                 </div>
                                             </div>
